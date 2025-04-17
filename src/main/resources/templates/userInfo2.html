@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My user page</title>
+    <style>
+    * {
+        margin: 0rem;
+        padding: 0rem;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: var(--body-color);
+        transition: all 0.3s ease;
+    }
+
+
+    :root {
+        --body-color: #d4daeb;
+        --shell-color: #0b0d0f;
+        --primary-color: #695CFE;
+        --primary-color-light: #F6F5FF;
+        --text-color: #e4d3d3;
+    }
+
+    .shell {
+        position: fixed;
+        top: 0rem;
+        left: 0rem;
+        height: 100rem;
+        width: 17.5rem;
+        padding: 1rem 1rem;
+        background: var(--shell-color);
+        transition: all 0.3s ease;
+    }
+
+    .shell li {
+        height: 5rem;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin-top: -1rem;
+    }
+
+
+    .text{
+        color: var(--text-color);
+        transition: all 0.3s ease;
+        font: 500 17px;
+        white-space: nowrap;
+        opacity: 1;
+    }
+
+
+
+
+    .image-text span{
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+    }
+
+    .name {
+        margin-top: 0.5rem;
+        font: 600 18px '';
+    }
+
+    .image {
+        display: flex;
+        justify-content: center;
+    }
+
+    .image img {
+        width: 5rem;
+        border-radius: 0.25rem;
+    }
+
+    .menu {
+        margin-top: 1.5rem;
+    }
+
+    .nav-link ion-icon {
+        font-size: 2rem; 
+        align-items: center;
+    }
+
+    .nav-link span {
+        font-size: 18px; 
+        font-family: Arial, sans-serif;
+        align-items: center;
+        padding: 0.5rem;
+    }
+
+    .shell li a {
+        list-style: none;
+        height: 100rem;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        height: 2.5rem;
+        width: 12.5rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .shell li a:hover {
+        background-color: var(--primary-color);
+    }
+
+    .shell li a:hover .icon,
+    .shell li a:hover .text {
+        color: var(--shell-color);
+    }
+
+    .container1 {
+        position: absolute;
+        top: 7.5rem;
+        left: 81.5rem;
+        font-family: Arial, sans-serif;
+        width: 25rem;
+        height: 17.5rem;
+        margin: 0.5rem auto;
+        padding: 2.25rem;
+        background-color: #f5eff5;
+        border-radius: 1rem;
+        z-index: 2;
+    }
+
+    .container1 .box{
+        position: absolute;
+        top: 1.5rem;
+        left: 4.5rem;
+        font-family: Arial, sans-serif;
+        border: 0.2rem solid black;
+        width: 12.5rem;
+        height: 12.5rem;
+        margin: 0.5rem auto;
+        padding: 2.25rem;
+        background-color: #f5eff5;
+        border-radius: 1rem;
+        z-index: 3;
+    }
+
+    .container1 div.box img{
+        position: absolute;
+        top: 0%;
+        right: 0%;
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        border-radius: 1rem;
+
+    }
+
+    .container2 {
+        position: relative;
+        top: 2.5rem;
+        left: 30rem;
+        font-family: Arial, sans-serif;
+        border: 0.2rem solid black;
+        max-width: 45rem;
+        margin: 0.5rem auto;
+        padding: 2.25rem;
+        background-color: #f5eff5;
+        border-radius: 1rem;
+        z-index: 1;
+    }
+
+    h2 {
+        color: #333;
+        margin-bottom: 2.5%;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 1.25%;
+        color: #1f1919;
+        
+    }
+
+    input[type="text"],
+    select {
+        width: 20%;
+        padding: 1.3%;
+        margin-bottom: 2.25%;
+        border: 0.2rem solid #ccc;
+        border-radius: 0.5rem;
+    }
+
+    textarea {
+        width: 60%;
+        padding: 1.5%;
+        margin-bottom: 2.5%;
+        border: 0.2rem solid #9b7d7d;
+        border-radius: 0.5rem;
+    }
+
+    button[type="submit"][value="updateProfile"] {
+        position: absolute;
+        top: 92.5%;
+        left: 5%;
+        background-color: #695CFE;
+        color: #fff;
+        padding: 0.5rem 0.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+    }
+
+    .newButton{
+        position: absolute;
+        top: 10rem;
+        left: 17.5rem;
+        display:inline-block;
+        padding:0.45rem 1rem;
+        background-color: #695CFE;
+        color: #fff;
+        border: none;
+        cursor:pointer;
+        border-radius: 0.5rem;
+    }
+
+    button[type="submit"][value="updatePhoto"] {
+        position: absolute;
+        top: 12.5rem;
+        left: 17.5rem;
+        display:inline-block;
+        background-color: #695CFE;
+        color: #fff;
+        padding: 0.5rem 0.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+    }
+
+    .card{
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        width: 30%; 
+        height: 40%; 
+        border-radius: 0.5rem;
+        border: 0.2rem solid black;
+        background-color: #e4d3d3;
+        font-family: Arial, sans-serif;
+        align-items: center;
+        font-size: 18px;
+    }
+
+    </style>
+</head>
+
+<body background="">
+
+    <nav class="shell open">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="${user.avatarUrl}" alt="avatarUrl">
+                </span>
+                <div class="text logo-text">
+                    <span class="name" value="My Dashboard"></span>
+                </div>
+            </div>
+
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="home_page_auth">
+                            <ion-icon name="home-outline"></ion-icon>
+                            <span class="text nac-text">Home</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="user_home_page">
+                            <ion-icon name="document-text-outline"></ion-icon>
+                            <span class="text nac-text">My profile</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="user_msg">
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <span class="text nac-text">Message</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="user_appointment">
+                            <ion-icon name="time-outline"></ion-icon>
+                            <span class="text nac-text">My appointments</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="orders">
+                            <ion-icon name="wallet-outline"></ion-icon>
+                            <span class="text nac-text">My orders</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="/user_changepsw">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            <span class="text nac-text">Update password</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                            <span class="text nac-text">Log out</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="/user_cancel">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <span class="text nac-text">Cancel account</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+    </nav>
+
+        <!-- Profile Photo -->   
+        <div class="container1">
+            <form action="/user_home_page" method="post" enctype="multipart/form-data">
+                <div class="box">
+                    <img src="${user.avatarUrl}" alt="avatarUrl" />
+                </div>
+
+                <div class="course">
+                    <label for="fileInput" class="newButton">Upload</label>
+                    <input type="file" id="fileInput" name="file" accept="image/*" style="display:none;">
+                </div>
+                <div id="preview"></div>
+                <button button type="submit" value="updatePhoto">Save Photo</button>
+            </form>
+        </div>
+        
+        <div class="container2">
+            <!-- My Profile -->
+            <h2>Update your user profile here!</h2>
+            <form action="/user_home_page" method="post">
+            <label for="username">Nick name:</label>
+            <input type="text" id="nickname" name="nickname" th:value="${user.nickname}">
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="MALE" th:selected="${user.gender == 'MALE'}">MALE</option>
+                <option value="FEMALE" th:selected="${user.gender == 'FEMALE'}">FEMALE</option>
+                <option value="OTHER" th:selected="${user.gender == 'OTHER'}">OTHER</option>
+            </select>
+
+            <label for="birthday">Birthday: "YYYY-MM-DD" </label>
+            <input type="text" id="birthday" name="birthday" th:value="${user.birthday}">
+            
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" th:value="${user.email}">
+            
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone" th:value="${user.phone}">
+            
+            <label for="about">About me:</label>
+            <textarea id="about" name="about" rows="5" th:value="${user.about}"></textarea>
+
+            <button type="submit" value="updateProfile" name="profileSubmit">Save Profile</button>
+            
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+              <img src="" alt="Profile" class="rounded-circle">
+              <p><strong>Nickname:</strong> [[${user.nickname}]]</p>
+              <p><strong>Gender:</strong> [[${user.gender}]]</p>
+              <p><strong>Birthday:</strong> [[${user.birthday}]]</p>
+              <p><strong>Email:</strong> [[${user.email}]]</p>
+              <p><strong>Phone:</strong> [[${user.phone}]]</p>
+              <p><strong>About:</strong> [[${user.about}]]</p>
+            </div>
+          </div>
+
+
+
+
+</body>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<!-- 
+<script>
+    window.onload = setupImageUpload();
+    window.onload = function () {
+        document.querySelectorAll('.image').forEach(function (image) {
+            image.classList.add('active');
+        });
+    };
+    function setupImageUpload() {
+        var fileInput = document.getElementById('fileInput');
+        fileInput.addEventListener('change', function () {
+            var file = fileInput.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var imgElement = document.createElement('img');
+                    imgElement.src = e.target.result;
+                    imgElement.style.maxWidth = '500px';
+                    imgElement.style.maxHeight = '250px';
+                    var preview = document.getElementById('preview');
+                    preview.innerHTML = '';
+                    preview.appendChild(imgElement);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+</script> -->
+
+
+</html> 

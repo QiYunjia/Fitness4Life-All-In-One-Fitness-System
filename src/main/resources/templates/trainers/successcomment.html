@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Comment</title>
+    <!-- Bootstrap CSS for styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #343a40;
+        }
+        .btn, .form-control {
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .form-label {
+            color: #343a40;
+        }
+        .btn-outline-info, .btn-primary, .btn-secondary {
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            font-size: 20px;
+            font-weight: 400;
+            padding: 12px 15px;
+            width: 100px;
+            border-radius: 20px;
+        }
+        btn-outline-info {
+            color: #007bff;
+            background-color: transparent;
+            border-color: #007bff;
+        }
+        .btn-outline-info:hover, .btn-primary:hover, .btn-secondary:hover {
+            background-color: #0056b3;
+        }
+        .container {
+            padding: 2rem; 
+            background-color: #fff; 
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,.1); 
+            margin-top: 2rem; 
+            margin-bottom: 2rem; 
+            max-width: 1000px;
+            margin-left: auto; 
+            margin-right: auto; 
+        }
+        .alert-success {
+            color: #0f5132;
+            background-color: #d1e7dd;
+            border-color: #badbcc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a th:href="@{/trainers/showFormForReadonlyforuser(trainerId=${trainerId})}" class="btn btn-secondary mb-3">Back</a>
+        <div th:if="${message}" class="alert alert-success" role="alert">
+            <p th:text="${message}">Success message goes here</p>
+        </div>
+        
+    </div>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

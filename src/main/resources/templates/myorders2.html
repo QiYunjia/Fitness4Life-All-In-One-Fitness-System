@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My orders</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+    * {
+        margin: 0rem;
+        padding: 0rem;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: var(--body-color);
+        transition: all 0.3s ease;
+    }
+
+ 
+    :root {
+        --body-color: #d4daeb;
+        --shell-color: #0b0d0f;
+        --primary-color: #695CFE;
+        --primary-color-light: #F6F5FF;
+        --text-color: #e4d3d3;
+    }
+
+    .header {
+        position: relative;
+    }
+
+    .shell {
+        position: fixed;
+        top: 0rem;
+        left: 0rem;
+        height: 100rem;
+        width: 17.5rem;
+        padding: 1rem 1rem;
+        background: var(--shell-color);
+        transition: all 0.3s ease;
+    }
+
+    .shell li {
+        height: 5rem;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin-top: -1rem;
+    }
+
+
+    .text{
+        color: var(--text-color);
+        transition: all 0.3s ease;
+        font: 500 17px;
+        white-space: nowrap;
+        opacity: 1;
+    }
+
+
+    .image-text span{
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+    }
+
+    .name {
+        margin-top: 0.5rem;
+        font: 600 18px '';
+    }
+
+    .image {
+        display: flex;
+        justify-content: center;
+    }
+
+    .image img {
+        width: 5rem;
+        border-radius: 0.25rem;
+    }
+
+    .menu {
+        margin-top: 1.5rem;
+    }
+
+    .nav-link ion-icon {
+        font-size: 2rem;
+        align-items: center;
+    }
+
+    .nav-link span {
+        font-size: 18px; 
+        font-family: Arial, sans-serif;
+        align-items: center;
+        padding: 0.5rem;
+    }
+
+    .shell li a {
+        list-style: none;
+        height: 100rem;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        height: 2.5rem;
+        width: 12.5rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .shell li a:hover {
+        background-color: var(--primary-color);
+    }
+
+    .shell li a:hover .icon,
+    .shell li a:hover .text {
+        color: var(--shell-color);
+    }
+
+
+
+    section h1 {
+        position: absolute;
+        left: 35%;
+        top: 5%;
+        font-size: 2rem;
+        margin-bottom: 0rem;
+    }
+
+    section input[type="search"] {
+        position: absolute;
+        left: 35%;
+        top: 10%;
+        padding: 0.7rem;
+        border-radius: 0.5rem;
+        border: 0.2rem solid #ccc;
+        width: 10rem;
+        }
+
+    section.shell {
+        width: 50%;
+        height: 80%;
+        top: 15%;
+        left: 35%;
+        max-height:calc(90%-25px);
+        background-color:#fffb;
+        margin:8px auto;
+        border-radius: 0.5rem;
+        overflow:auto;
+        overflow:overlay;
+    }
+
+    section.shell::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    table,th,td {
+        border-collapse:collapse;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    thead th {
+        position:sticky;
+        top:0rem;
+        left:0rem;
+        background-color:#d5d1defe;
+        cursor:pointer;
+    }
+
+    
+    tbody tr:nth-child(even){
+        background-color:#0000000b;
+    }
+
+    tbody tr:hover {
+        background-color:#fff6 !important;
+    }
+
+    .button {
+        background-color: #695CFE;
+        padding:0.5rem 1rem;
+        border-radius: 0.5rem;
+        text-align: center;
+    }
+
+    </style>
+</head>
+
+<body background="">
+
+    <nav class="shell open">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="frieren.jpg" alt="">
+                </span>
+                <div class="text logo-text">
+                    <span class="name">My user name</span>
+                </div>
+         </div>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="home_page_auth">
+                            <ion-icon name="home-outline"></ion-icon>
+                            <span class="text nac-text">Home</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="user_home_page">
+                            <ion-icon name="document-text-outline"></ion-icon>
+                            <span class="text nac-text">My profile</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="message.html">
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <span class="text nac-text">Message</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="myappointments.html">
+                            <ion-icon name="time-outline"></ion-icon>
+                            <span class="text nac-text">My appointments</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <ion-icon name="wallet-outline"></ion-icon>
+                            <span class="text nac-text">My orders</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="changepassword.html">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            <span class="text nac-text">Update password</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                            <span class="text nac-text">Log out</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <span class="text nac-text">Cancel account</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+    </nav>
+        <section>
+            <h1>My Orders</h1>
+        </section>
+        <section class="shell">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Plan Name</th>
+                    <th>Price</th>
+                    <th>Subscribing Date</th>
+                    <th>Expire Date</th>
+                    <th>Discount</th>
+                    <th>Final Price</th>
+                    <th>Get Receipt</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.planName}"></td>
+                    <td th:text="${order.price}"></td>
+                    <td th:text="${order.subscribingDate}"></td>
+                    <td th:text="${order.expireDate}"></td>
+                    <td th:text="${order.discount}"></td>
+                    <td th:text="${order.finalPrice}"></td>
+                    <td>
+                        <button onclick="printOrder(this.parentElement.parentElement)" class="btn btn-primary"><i class="fas fa-print"></i></button>
+                        <button onclick="downloadOrder(this.parentElement.parentElement)" class="btn btn-secondary"><i class="fas fa-download"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+<script>
+    function printOrder(orderRow) {
+        let fields = ['Plan Name', 'Price', 'Subscribing Date', 'Expire Date', 'Discount', 'Final Price'];
+        let printContent = '<table style="width:100%; border: none;">';
+        Array.from(orderRow.cells).forEach(function(cell, index) {
+            printContent += `<tr><td style="font-weight:bold;">${fields[index]}</td><td>${cell.innerText}</td></tr>`;
+        });
+        printContent += '</table>';
+
+        var newWin = window.open('', 'Print-Window');
+        newWin.document.open();
+        newWin.document.write('<html><head><title>Print Order</title></head><body onload="window.print()">' + printContent + '</body></html>');
+        newWin.document.close();
+        setTimeout(function() { newWin.close(); }, 10);
+    }
+
+    function downloadOrder(orderRow) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        let fields = ['Plan Name', 'Price', 'Subscribing Date', 'Expire Date', 'Discount', 'Final Price'];
+        let y = 20; // Start position for the first item
+        Array.from(orderRow.cells).forEach(function(cell, index) {
+            doc.text(`${fields[index]}: ${cell.innerText}`, 10, y);
+            y += 10; // Increase y coordinate for next line
+        });
+
+        doc.save('order-details.pdf');
+    }
+</script>
+</html> 

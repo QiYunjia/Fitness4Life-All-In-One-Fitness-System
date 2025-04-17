@@ -1,0 +1,240 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <title>View Trainer</title>
+    <style>
+        body {
+             font-family: verdana, geneva, sans-serif;
+             background-color: #f8f9fa; /* Adjusted to light grey */
+             color: #343a40; /* Adjusted text color for better visibility on light background */
+        }
+        .btn3 {
+        position: relative; 
+        top: -30px; 
+        }
+        .btn, .form-control {
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .form-label {
+            color: #343a40;
+        }
+        .btn-outline-info, .btn-primary, .btn-secondary {
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            font-size: 20px;
+            font-weight: 400;
+            padding: 12px 15px;
+            width: 100px;
+            border-radius: 20px;
+            
+        }
+        .btn4{
+            display: inline-block;
+            padding: .5rem 1rem;
+            width:200px;
+        }
+       
+        .btn-outline-info {
+            color: #007bff;
+            background-color: transparent;
+            border-color: #007bff;
+        }
+        .btn-outline-info:hover, .btn-primary:hover, .btn-secondary:hover {
+            background-color: #0056b3;
+        }
+        .container {
+            color: #343a40; /* Ensuring text is visible on light background */
+   
+        }
+        /* Additional style to lighten up input and select fields */
+        .form-control {
+            background-color: #fff;
+            color: #495057;
+            border: 1px solid #ced4da;
+        }
+        .trainer-animation {
+        position: relative;
+        right: -300px; 
+        transition: right 2s; 
+    }
+    .trainer-animation.active {
+        right: 0;
+    }
+    .trainer-img {
+        width: 400px;        
+        margin-top: 20px;    
+    }
+    .trainer-img-relative {
+        position: relative; 
+        top: 150px;         
+        width: 400px;       
+    }
+
+    .trainer-animation {
+        position: relative;
+        right: -300px; 
+        transition: right 2s; 
+    }
+    .trainer-animation-no-img.active {
+    right: 0; 
+}
+.trainer-animation.active {
+    right: 0;
+}
+    .trainer-img {
+        width: 400px;        
+        margin-top: 20px;    
+    }
+    .trainer-img-relative {
+        position: relative; 
+        top: 150px;         
+        width: 350px;       
+    }
+    .trainer-animation-no-img {
+    position: relative;
+    top: -130px;
+    right: -300px;
+    transition: right 2s;
+}
+    @media (max-width: 768px) {
+        .trainer-img {
+            margin-top: 10px; 
+        }
+    }
+   
+    </style>
+</head>
+
+<body>
+    
+<!-- <section>
+    <button class="btn btn-outline-info hBack mt-2 ms-5" type="button" onclick="history.back()"><i class="bi bi-arrow-left"></i><span class="lead"> Back</span></button>
+</section> -->
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <a th:href="@{/trainers/list}" class="btn btn-secondary btn3">Back</a>
+            <h3 >Trainer Details</h3>
+        </div>
+        <div th:class="${trainer.imageUrl != null && !trainer.imageUrl.isEmpty() ? 'trainer-animation' : 'trainer-animation-no-img'}"> 
+            <img src="training.svg" th:src="@{/training.svg}" alt="trainers" class="trainer-img-relative mb-3 ">
+        </div>
+    </div>
+
+    <form th:action="@{/trainers/save}" th:object="${trainer}" method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" th:field="*{id}" />
+        <div class="mb-3">
+            <!-- <label for="trainerImage" class="form-label">Trainer Image</label> -->
+            <img src="" th:src="${trainer.imageUrl}" th:if="${trainer.imageUrl}" class="img-fluid rounded-circle mb-3"  id="trainerImage" style="width: 10%;" />
+            <div th:unless="${trainer.imageUrl}">
+               
+                <div class="p-2 form-control mb-3" readonly style="height: auto; background-color: #e9ecef;">
+                    
+                    <p class="mb-0">No image available</p>
+                </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="text" th:field="*{age}" class="form-control" id="age" placeholder="Age" readonly>
+        </div>
+        <!-- Level as a dropdown -->
+        <!-- <div class="mb-3">
+            <label for="level" class="form-label">Level</label>
+            <select th:field="*{level}" class="form-control" id="level" readonly disabled>
+                <option value="3-Stars">3-Stars</option>
+                <option value="4-Stars">4-Stars</option>
+                <option value="5-Stars">5-Stars</option>
+            </select>
+        </div> -->
+        <div class="mb-3">
+            <label for="level" class="form-label">Level</label>
+            <select th:field="*{level}" class="form-control" id="level" readonly disabled>
+                <!-- <option value="" th:text="'Select a level'"></option> -->
+                <option th:each="level : ${level}"
+                        th:value="${level.classname}"
+                        th:text="${level.classname}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="timeCollection" class="form-label">Time Collection</label>
+            <input type="text" th:field="*{timeCollection}" class="form-control" id="timeCollection" placeholder="Time Collection" readonly>
+        </div>
+
+        <!-- <div class="mb-3">
+            <label for="classId" class="form-label">Class ID</label>
+            <input type="text" th:field="*{classId}" class="form-control" id="classId" placeholder="Class ID" readonly>
+        </div> -->
+        <div class="mb-3">
+            <label for="course" class="form-label">Course</label>
+            <input type="text" th:field="*{course}" class="form-control" id="course" placeholder="Course" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="coursename" class="form-label">Coursename</label>
+            <input type="text" th:field="*{coursename}" class="form-control" id="coursename" placeholder="Coursename" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="intro" class="form-label">Intro</label>
+            <textarea th:field="*{intro}" class="form-control" id="intro" placeholder="Intro" readonly rows="3"></textarea>
+        </div>
+
+        <!-- <a th:href="@{/trainers/{id}/comments/new(id=*{id})}" class="btn btn-secondary btn4">
+            Add Comment
+        </a> -->    
+        <!-- Assuming 'trainer' is an instance of your Trainer class -->
+    <button class="btn btn-secondary">
+        <a th:href="@{/trainers/delete/{id}(id=${trainer.id})}" style="color: white; text-decoration: none;"onclick="return confirm('Are you sure you want to delete this trainer?')">Delete</a>
+    </button>
+
+        <!-- <a th:href="@{/trainers/list}" class="btn btn-secondary">Back to Trainers List</a> -->
+
+    </form>
+
+    
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    var showModal = "${showModal}";
+
+
+    if (showModal === "true") {
+        $('#trial').modal('show');
+    }
+</script>
+<script>
+    window.onload = function () {
+        var animatedImage = document.querySelector('.trainer-animation');
+        if (animatedImage) {
+            animatedImage.classList.add('active');
+        }
+        
+
+        var animatedElementsNoImg = document.querySelectorAll('.trainer-animation-no-img');
+        animatedElementsNoImg.forEach(function(element) {
+            element.classList.add('active');
+        });
+    };
+    </script>
+</body>
+
+</html>

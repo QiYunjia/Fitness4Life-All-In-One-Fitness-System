@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My appointments</title>
+    <style>
+    * {
+        margin: 0rem;
+        padding: 0rem;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: var(--body-color);
+        transition: all 0.3s ease;
+    }
+
+
+    :root {
+        --body-color: #d4daeb;
+        --shell-color: #0b0d0f;
+        --primary-color: #695CFE;
+        --primary-color-light: #F6F5FF;
+        --text-color: #e4d3d3;
+    }
+
+    .header {
+        position: relative;
+    }
+
+    .shell {
+        position: fixed;
+        top: 0rem;
+        left: 0rem;
+        height: 100rem;
+        width: 17.5rem;
+        padding: 1rem 1rem;
+        background: var(--shell-color);
+        transition: all 0.3s ease;
+    }
+
+    .shell li {
+        height: 5rem;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin-top: -1rem;
+    }
+
+
+    .text{
+        color: var(--text-color);
+        transition: all 0.3s ease;
+        font: 500 17px;
+        white-space: nowrap;
+        opacity: 1;
+    }
+
+
+    .image-text span{
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+    }
+
+    .name {
+        margin-top: 0.5rem;
+        font: 600 18px '';
+    }
+
+    .image {
+        display: flex;
+        justify-content: center;
+    }
+
+    .image img {
+        width: 5rem;
+        border-radius: 0.25rem;
+    }
+
+    .menu {
+        margin-top: 1.5rem;
+    }
+
+    .nav-link ion-icon {
+        font-size: 2rem; 
+        align-items: center;
+    }
+
+    .nav-link span {
+        font-size: 18px; 
+        font-family: Arial, sans-serif;
+        align-items: center;
+        padding: 0.5rem;
+    }
+
+    .shell li a {
+        list-style: none;
+        height: 100rem;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        height: 2.5rem;
+        width: 12.5rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .shell li a:hover {
+        background-color: var(--primary-color);
+    }
+
+    .shell li a:hover .icon,
+    .shell li a:hover .text {
+        color: var(--shell-color);
+    }
+
+
+
+    section h1 {
+        position: absolute;
+        left: 35%;
+        top: 5%;
+        font-size: 2rem;
+        margin-bottom: 0rem;
+    }
+
+    section input[type="search"] {
+        position: absolute;
+        left: 35%;
+        top: 10%;
+        padding: 0.7rem;
+        border-radius: 0.5rem;
+        border: 0.2rem solid #ccc;
+        width: 15rem;
+        }
+
+    section.shell {
+        width: 50%;
+        height: 80%;
+        top: 15%;
+        left: 35%;
+        max-height:calc(90%-25px);
+        background-color:#fffb;
+        margin:8px auto;
+        border-radius: 0.5rem;
+        overflow:auto;
+        overflow:overlay;
+    }
+
+    section.shell::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    table,th,td {
+        border-collapse:collapse;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    thead th {
+        position:sticky;
+        top:0rem;
+        left:0rem;
+        background-color:#d5d1defe;
+        cursor:pointer;
+    }
+
+
+    tbody tr:nth-child(even){
+        background-color:#0000000b;
+    }
+
+    tbody tr:hover {
+        background-color:#fff6 !important;
+    }
+
+    .button {
+        background-color: #695CFE;
+        padding:0.5rem 1rem;
+        border-radius: 0.5rem;
+        text-align: center;
+    }
+
+    </style>
+</head>
+
+<body background="">
+
+    <nav class="shell open">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="frieren.jpg" alt="">
+                </span>
+                <div class="text logo-text">
+                    <span class="name">My user name</span>
+                </div>
+         </div>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="homepage.html">
+                            <ion-icon name="home-outline"></ion-icon>
+                            <span class="text nac-text">Home</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="userInfo.html">
+                            <ion-icon name="document-text-outline"></ion-icon>
+                            <span class="text nac-text">My profile</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="message.html">
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <span class="text nac-text">Message</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <ion-icon name="time-outline"></ion-icon>
+                            <span class="text nac-text">My appointments</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="myorders.html">
+                            <ion-icon name="wallet-outline"></ion-icon>
+                            <span class="text nac-text">My orders</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="changepassword.html">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            <span class="text nac-text">Update password</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                            <span class="text nac-text">Log out</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <span class="text nac-text">Cancel account</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+    </nav>
+        <section>
+            <h1>My Appointments</h1>
+            <input type="search" id="searchInput" onkeyup="searchAppointment()" placeholder="Search appointment...">
+        </section>
+
+        <section class="shell">
+            <table id="appointmentTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Class</th>
+                        <th>Trainer</th>
+                        <th>Time</th>
+                        <th>Operation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>Yoga - beginner</td>
+                        <td>Dwayne Johnson</td>
+                        <td>2024/04/01 10:00:00</td>
+                        <td>
+                            <p class="button">Edit</p>
+                            <p class="button">Cancel</p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>02</td>
+                        <td>Basic Fitness</td>
+                        <td>Sylvester Stallone</td>
+                        <td>2024/04/01 12:00:00</td>
+                        <td>
+                            <p class="button">Edit</p>
+                            <p class="button">Cancel</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td>Basic Fitness</td>
+                        <td>Sylvester Stallone</td>
+                        <td>2024/04/01 12:00:00</td>
+                        <td>
+                            <p class="button">Edit</p>
+                            <p class="button">Cancel</p>
+                        </td>
+                    </tr><tr>
+                        <td>02</td>
+                        <td>Basic Fitness</td>
+                        <td>Sylvester Stallone</td>
+                        <td>2024/04/01 12:00:00</td>
+                        <td>
+                            <p class="button">Edit</p>
+                            <p class="button">Cancel</p>
+                        </td>
+                    </tr><tr>
+                        <td>02</td>
+                        <td>Basic Fitness</td>
+                        <td>Sylvester Stallone</td>
+                        <td>2024/04/01 12:00:00</td>
+                        <td>
+                            <p class="button">Edit</p>
+                            <p class="button">Cancel</p>
+                        </td>
+                    </tr><tr>
+                        <td>02</td>
+                        <td>Basic Fitness</td>
+                        <td>Sylvester Stallone</td>
+                        <td>2024/04/01 12:00:00</td>
+                        <td>
+                            <p class="button">Edit</p>
+                            <p class="button">Cancel</p>
+                        </td>
+                    </tr><tr>
+                        <td>02</td>
+                        <td>Basic Fitness</td>
+                        <td>Sylvester Stallone</td>
+                        <td>2024/04/01 12:00:00</td>
+                        <td>
+                            <p class="button">Edit</p>
+                            <p class="button">Cancel</p>
+                        </td>
+                    </tr><tr>
+                        <td>02</td>
+                        <td>Basic Fitness</td>
+                        <td>Sylvester Stallone</td>
+                        <td>2024/04/01 12:00:00</td>
+                        <td>
+                            <p class="button">Edit</p>
+                            <p class="button">Cancel</p>
+                        </td>
+                    </tr><tr>
+                        <td>02</td>
+                        <td>Basic Fitness</td>
+                        <td>Sylvester Stallone</td>
+                        <td>2024/04/01 12:00:00</td>
+                        <td>
+                            <p class="button">Edit</p>
+                            <p class="button">Cancel</p>
+                        </td>
+                    </tr>
+                </tbody>
+            <table>
+        </section>
+    </main>
+
+
+</body>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<script>
+    function editAppointment(appointmentId) {
+        alert('Edit your appointment ' + appointmentId);
+    }
+
+    function confirmCancel(appointmentId) {
+        var result = confirm('Are you sure to cancel this appointment? ' + appointmentId + ' 吗？');
+        if (result) {
+            alert('Cancel appointment ' + appointmentId);
+        }
+    }
+
+    function searchAppointment() {
+            var input, filter, table, tr, tdClass, tdTrainer, i, txtValueCourse, txtValueTrainer;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("appointmentTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                tdClass = tr[i].getElementsByTagName("td")[1]; 
+                tdTrainer = tr[i].getElementsByTagName("td")[2]; 
+                if (tdClass && tdTrainer) {
+                    txtValueClass = tdClass.textContent || tdClass.innerText;
+                    txtValueTrainer = tdTrainer.textContent || tdTrainer.innerText;
+                    if (txtValueClass.toUpperCase().indexOf(filter) > -1 || txtValueTrainer.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+</script>
+</html> 

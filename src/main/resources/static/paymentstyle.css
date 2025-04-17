@@ -1,0 +1,114 @@
+@media(min-width: 992px) {
+    .coltwo {
+        background-color: rgb(245, 245, 243);
+    }
+
+    .payoption {
+        height: 64px;
+    }
+
+    .blank {
+        height: 100vh;
+    }
+
+    .hid-1 {
+        display: none;
+        visibility: hidden;
+        position: absolute;
+        left: -9999px;
+    }
+}
+
+@media(min-width: 1600px){
+
+    .col-lg-1 {
+        width: 15%;
+    }
+
+    .col-lg-5 {
+        width: 35%;
+    
+    }
+}
+
+@media(min-width: 1600px) and (max-width: 1799px) {
+    .custom-width {
+        width: 490px;
+    }
+}
+
+@media(min-width: 1400px) and (max-width: 1460px) {
+    .custom-width {
+        width: 490px;
+    }
+}
+
+@media(min-width: 1460px) and (max-width: 1599px) {
+    .custom-width {
+        width: 540px;
+    }
+}
+
+@media(min-width: 992px) and (max-width: 1100px) {
+    .custom-width {
+        width: 366px;
+    }
+}
+
+@media(max-width: 991px) {
+    .coltwo {
+        background-color: white;
+    }
+
+    .payoption {
+        height: 75px;
+    }
+
+    .hid-2 {
+        display: none;
+        visibility: hidden;
+        position: absolute;
+        left: -9999px;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 991px) {
+    .custom-width {
+        width: 540px;
+    }
+}
+
+.form-check-input {
+    border-color: rgb(207, 207, 207);
+}
+.form-check-input:checked {
+    background-color:black;
+    border-color: black;
+}
+
+.payoption {
+    border-color: rgb(207, 207, 207);
+}
+
+.payoption:has(input[type="radio"]:checked) {
+    border: 1px solid #000;
+}
+
+.payoption:hover {
+    border-color: rgb(207, 207, 207);
+}
+
+.btn[id="payoption1"]:active {
+    border-color: rgb(207, 207, 207);
+}
+
+.btn[id="payoption2"]:active {
+    border-color: rgb(207, 207, 207);
+}
+
+.custom-text {
+    font-size: 1rem;
+}
+
+
+

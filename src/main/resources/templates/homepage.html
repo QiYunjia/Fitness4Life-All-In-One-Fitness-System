@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness4Life Home</title>
+    <link rel="icon" href="logo-new.ico" type="image/icon type">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+
+      .card-img-top {
+        width: auto;
+        max-width: 75%; 
+        height: auto; 
+      }
+
+      
+      .px-3 {
+        padding-left: 1rem; 
+        padding-right: 1rem; 
+      }
+
+      
+      .card-footer {
+        margin-top: auto;
+      }
+    </style>
+
+</head>
+<body>
+<!-- navbar -->
+<div class="nav navbar navbar-expand-custom bg-dark navbar-dark py-2 fixed-top ps-5 pe-5">
+
+    <a href="#" class="navbar-brand" style="font-style:italic; font-weight: bold; font-size: 1.6em"><img src="logo-new.jpg" alt="" class="img-fluid logo rounded-5 me-1 mb-2" width="30px" height="30px">Fitness4Life</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav text-center flex-grow-1 pe-3 gap-custom justify-content-center">
+            <li class="nav-item">
+                <a href="#trial" data-bs-toggle="modal" class="nav-link">Appointment</a>
+            </li>
+            <li class="nav-item">
+                <a href="subscribe_page" class="nav-link">Subscribe</a>
+            </li>
+            <li class="nav-item">
+                <a href="#courses-container" class="nav-link">Courses</a>
+            </li>
+            <li class="nav-item">
+                <a href="#questions" class="nav-link">Questions</a>
+            </li>
+            <li class="nav-item">
+                <a href="/trainers/userlist" class="nav-link">Trainers</a>
+            </li>
+            <li class="nav-item">
+                <a href="#trial" data-bs-toggle="modal" class="nav-link">Notifications</a>
+            </li>
+        </ul>
+        <!-- <a class="navbar-brand" href="#">
+            <img src="notlogin.svg" alt="" width="30" height="24" class="rounded-circle">
+        </a> -->
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <!-- <a href="#Login" class="nav-link">Login</a> -->
+                <a class="btn btn-primary btn-sm account login" href="/log_in">Log In</a>
+            </li>
+            <li class="nav-item">
+                <!-- <a href="#Login" class="nav-link">Login</a> -->
+                <a class="btn btn-outline-warning btn-sm account signup" href="/add_user">Sign Up</a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- Showcase -->
+<section class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
+    <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+                <h1>Join Our <span class="text-warning">Workout Plan</span>!</h1>
+                <p class="lead my-4">Subscribe to one of our tailored fitness plans and start your journey to a healthier you today! Get personalized workouts and expert guidance designed to help you reach your goals faster. Don't wait, start now!
+                </p>
+                <a href="appointment_page" class="btn btn-primary btn-lg">Choose your own trainer!</a>
+            </div>
+            <img class="img-fluid w-50 d-none d-sm-block" src="Personal Trainer.svg" alt="">
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<!--<section class="bg-primary text-light p-5">-->
+<!--    <div class="container">-->
+<!--        <div class="d-md-flex justify-content-between align-items-center">-->
+<!--            <h3 class="mb-3 mb-md-0">Sign Up For Our Newsletter</h3>-->
+<!--            <div class="input-group news-input">-->
+<!--                <input type="text" class="form-control" placeholder="Enter Email" aria-label="Recipient's username" aria-describedby="button-addon2">-->
+<!--                <button class="btn btn-dark btn-lg" type="button" id="button-addon2">Button</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<!--Welcome messages-->
+<section class="bg-primary text-light p-3">
+    <div class="container">
+        <div class="text-center">
+            <h3 class="mb-3 mb-md-0">☺ Take a look at the plans and courses we're offering!</h3>
+            <h3></h3>
+            <h3 class="mb-3 mb-md-0">↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓</h3>
+        </div>
+    </div>
+</section>
+
+<!-- boxes -->
+<section class="p-5">
+    <div class="container">
+        <div class="row text-center g-4">
+            <div class="col-md">
+                <div class="card bg-dark text-light h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="h1 mb-3">
+                            <i class="bi bi-person-badge text-secondary"></i>
+                        </div>
+                        <h3 class="card-title mb-3">
+                            Silver Plan
+                        </h3>
+                        <p class="card-text">
+                            Provides access to all basic fitness videos and tutorials.
+                            Available for appointment with 3-Stars trainers.
+                            You can participate in online group fitness classes.
+                            It usually includes some basic nutritional guidance and health advice.
+                        </p>
+                        <a href="subscribe_page" class="btn btn-outline-light mt-auto">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card bg-dark text-light h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="h1 mb-3">
+                            <i class="bi bi-person-badge text-warning"></i>
+                        </div>
+                        <h3 class="card-title mb-3">
+                            Gold Plan
+                        </h3>
+                        <p class="card-text">
+                            Includes all rights and interests of Silver plan.
+                            Available for appointment with 4-Stars trainers.
+                            Provide more advanced courses, such as personalized fitness programs, one-on-one coaching by
+                            professional coaches, etc.
+                            It may include more interactive services, such as live teaching, Q&A sessions, etc.
+                        </p>
+                        <a href="subscribe_page" class="btn btn-outline-warning mt-auto">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card bg-dark text-light h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <div class="h1 mb-3">
+                            <i class="bi bi-person-badge text-info"></i>
+                        </div>
+                        <h3 class="card-title mb-3">
+                            Diamond Plan
+                        </h3>
+                        <p class="card-text">
+                            Includes all rights and interests of Gold plan.
+                            Available for appointment with 5-Stars trainers.
+                            May include specialized health and eating plans, tailored to individual circumstances.
+                            Diamond members may also have access to high-end fitness tools and equipment.
+                        </p>
+                        <a href="subscribe_page" class="btn btn-outline-info mt-auto">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Courses -->
+<div id="courses-container">
+    <h2 id="courses" class="invisible">Courses</h2>
+</div>
+
+<!-- questions -->
+<section id="questions" class="p-5">
+    <div class="container">
+        <h2 class="text-center mb-4 m-3">Frequently Asked Questions</h2>
+        <div class="accordion accordion-flush" id="questions2">
+            <!-- item 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-one" aria-expanded="false" aria-controls="flush-collapseOne">
+                        I'm new to fitness. What kind of training should I start with?
+                    </button>
+                </h2>
+                <div id="question-one" class="accordion-collapse collapse" data-bs-parent="#questions">
+                    <div class="accordion-body">
+                        For new bodybuilders, it's recommended to start with general basic strength training and
+                        cardio. This can help you build muscle strength and improve cardiorespulmonary endurance.
+                        Consider joining beginner yoga, a relaxing group fitness class, or using low-impact aerobic
+                        machinery such as a treadmill or elliptical. It is recommended to gradually increase the
+                        intensity and complexity of training under the guidance of a professional coach to ensure
+                        safe and effective achievement of fitness goals.
+                    </div>
+                </div>
+            </div>
+            <!-- item 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-two" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        How often should I do fitness training?
+                    </button>
+                </h2>
+                <div id="question-two" class="accordion-collapse collapse" data-bs-parent="#questions">
+                    <div class="accordion-body">
+                        Three to five training sessions per week, each lasting 30 to 60 minutes, are generally
+                        recommended, with the frequency and duration adjusted according to an individual's health
+                        status, fitness goals and schedule. It is important to give the body enough time to recover,
+                        especially after high intensity or strength intensive training. Consistent, regular exercise
+                        leads to more long-term health benefits than intermittent and casual exercise.
+                    </div>
+                </div>
+            </div>
+            <!-- item 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-three" aria-expanded="false" aria-controls="flush-collapseThree">
+                        How can you avoid injury while working out?
+                    </button>
+                </h2>
+                <div id="question-three" class="accordion-collapse collapse" data-bs-parent="#questions">
+                    <div class="accordion-body">
+                        The key to avoiding injury is to take the right precautions, including proper warming up and
+                        cooling down, using the right posture and technique, and listening to your body's signals.
+                        Warming up increases muscle temperature and flexibility, reducing the risk of injury;
+                        Correct exercise posture and techniques can ensure that all parts of the body are correctly
+                        stressed during exercise; Proper rest and recovery are equally important. If you have any
+                        doubts or discomfort, consult a professional fitness instructor or medical professional.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- trainers -->
+<section id="trainers" class="p-5 bg-primary">
+    <div class="container">
+        <h1 class="text-center text-white m-3">Our Trainers</h1>
+        <p class="lead text-center text-white mb-5">
+            Our trainers not only have rich experience and professional training skills,
+            but also have the ability to understand and meet the individual needs of our members.
+            Whether you are a fitness beginner or a professional athlete looking to improve,
+            our trainers can provide scientific guidance and motivational support to help you achieve your goals.
+            Through carefully designed sessions and one-on-one coaching, our trainers will ensure that each member not only sees physical improvement,
+            but also feels the positive changes that a healthy lifestyle can bring. Join us and let our professional trainers lead you on a new journey of fitness.
+        </p>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="container h-100">
+                    <div class="card bg-light h-100">
+                        <!-- <div class="card-body text-center"> -->
+                        <img src="arnold.jpg" class="img-fluid w-75 rounded-circle mb-3 mx-auto d-block" alt="">
+                        <!-- </div> -->
+                        <h3 class="card-title mb-3 text-center lead fw-semibold">Arnold Schwarzenegger</h3>
+                        <div class="container">
+                            <p class="card-text">
+                                Specialty: High Intensity interval Training (HIIT) and weight training.<br>
+                                Experience: 10 years of personal training experience, designed training programs for
+                                professional athletes and fitness enthusiasts.<br>
+                                Teaching Style: Greg is known for his passionate and driven approach to teaching,
+                                inspiring students to push their limits.<br>
+                            </p>
+                        </div>
+
+                        <div class="card-footer text-center">
+                            <a href="#"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                            <a href="#"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                            <a href="#"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                            <a href="#"><i class="bi bi-instagram text-dark mx-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="container h-100">
+                    <div class="card bg-light h-100">
+                        <!-- <div class="card-body text-center"> -->
+                        <img src="greg.jpg" class="img-fluid w-75 rounded-circle mb-3 mx-auto d-block" alt="">
+                        <!-- </div> -->
+                        <h3 class="card-title mb-3 text-center lead fw-semibold">Greg Doucette</h3>
+                        <div class="container">
+                            <p class="card-text">
+                                Expertise: Yoga, Pilates and flexibility training.<br>
+                                Experience: 15 years of teaching experience in international yoga and Pilates seminars.<br>
+                                Teaching style: Greg focuses on physical and mental integration, emphasizing practice
+                                in a relaxed and calm atmosphere to help students achieve physical and mental balance<br>
+                        </div>
+
+                        <div class="card-footer text-center">
+                            <a href="#"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                            <a href="#"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                            <a href="#"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                            <a href="#"><i class="bi bi-instagram text-dark mx-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="container h-100">
+                    <div class="card bg-light h-100">
+                        <!-- <div class="card-body text-center"> -->
+                        <img src="henry.jpg" class="img-fluid w-75 rounded-circle mb-3 mx-auto d-block" alt="">
+                        <!-- </div> -->
+                        <h3 class="card-title mb-3 text-center lead fw-semibold">Henry Cavill</h3>
+                        <div class="container">
+                            <p class="card-text">
+                                Expertise: Strength training, body sculpting and nutrition coaching.<br>
+                                Experience: Holds a degree in sports science, has worked as a head trainer in a health
+                                club, and has 8 years of professional coaching experience.<br>
+                                Teaching Style: Henry focuses on scientific training methods combined with nutritional
+                                advice to provide trainees with a comprehensive fitness solution.<br>
+                            </p>
+                        </div>
+
+                        <div class="card-footer text-center">
+                            <a href="#"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                            <a href="#"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                            <a href="#"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                            <a href="#"><i class="bi bi-instagram text-dark mx-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="container h-100">
+                    <div class="card bg-light h-100">
+                        <!-- <div class="card-body text-center"> -->
+                        <img src="rock.jpg" class="img-fluid w-75 rounded-circle mb-3 mx-auto d-block" alt="">
+                        <!-- </div> -->
+                        <h3 class="card-title mb-3 text-center lead fw-semibold">Dwayne Johnson</h3>
+                        <div class="container">
+                            <p class="card-text">
+                                Specialty: Dance fitness, aerobics and geriatric fitness.<br>
+                                Experience: He used to be a professional dancer, and then turned into a fitness trainer.<br>
+                                After that, he integrated dance elements into fitness teaching, with 12 years of
+                                teaching experience.<br>
+                                Teaching Style: Dwayne is known for his innovative and dynamic curriculum, creating a
+                                relaxed and enjoyable exercise environment for students of all ages.<br>
+                            </p>
+                        </div>
+
+                        <div class="card-footer text-center">
+                            <a href="#"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                            <a href="#"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                            <a href="#"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                            <a href="#"><i class="bi bi-instagram text-dark mx-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- contant & map -->
+<section class="p-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md">
+                <h2 class="text-center mb-4">Contact Info</h2>
+                <ul class="list-group list-group-flush lead" style="width: 50%; margin: auto;">
+                    <li class="list-group-item">
+                        <span class="fw-bold">Main Location:</span> Fitness4Life Appointments Headquarters
+                    </li>
+                    <li class="list-group-item">
+                        <span class="fw-bold">Phone Number:</span> 111-1111
+                    </li>
+                    <li class="list-group-item">
+                        <span class="fw-bold">Contact Email:</span> Support@Fitness4Life.com
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- fotter -->
+<footer class="p-5 bg-dark text-white text-center position-relative">
+    <div class="container">
+        <p class="lead">Copyright &copy; 2024 Fitness4Life</p>
+        <a href="" class="position-absolute bottom-0 end-0 p-5">
+            <i class="bi bi-arrow-up-circle h1"></i>
+        </a>
+    </div>
+</footer>
+
+<!-- Modal -->
+<div class="modal fade" id="trial" tabindex="-1" aria-labelledby="trialLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="trialLabel">You're not logged in</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="lead mb-0">You have to log in first to continue.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var showModal = "${showModal}";
+
+
+    if (showModal === "true") {
+
+        $('#trial').modal('show');
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('/courses')
+            .then(response => response.json())
+            .then(data => {
+                const coursesContainer = document.getElementById('courses-container');
+                data.forEach((course, index) => {
+                    const courseSection = document.createElement('section');
+                    courseSection.className = 'p-5 ' + (index % 2 === 0 ? '' : 'bg-dark text-light');
+                    courseSection.innerHTML = `
+                <div class="container">
+                    <div class="row align-items-center justify-content-between">
+                        ${index % 2 === 0 ? `<div class="col-md"><img src="${course.image_url}" class="img-fluid course_image" alt=""></div>` : ''}
+                        <div class="col-md p-5">
+                            <h2>${course.name}</h2>
+                            <p class="lead">${course.description}</p>
+                            <a href="#" class="btn btn-light mt-3"><i class="bi bi-chevron-right"></i> Read More</a>
+                        </div>
+                        ${index % 2 === 1 ? `<div class="col-md"><img src="${course.image_url}" class="img-fluid course_image" alt=""></div>` : ''}
+                    </div>
+                </div>
+            `;
+                    coursesContainer.appendChild(courseSection);
+                });
+            })
+    });
+</script>
+</body>
+</html>

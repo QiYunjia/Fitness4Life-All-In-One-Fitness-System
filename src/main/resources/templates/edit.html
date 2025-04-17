@@ -1,0 +1,91 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+        .slide {
+          width: 100vw;
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background-color: #f0f0f0;
+        }
+        .content {
+          max-width: 80%;
+          text-align: center;
+        }
+        textarea {
+          width: 80%;
+          height: 200px; /* 调整文本框的高度 */
+          margin-top: 20px;
+          resize: none; /* 禁止文本框调整大小 */
+          font-size: 16px; /* 调整文本框字体大小 */
+        }
+        img {
+          max-width: 80%;
+          max-height: 60vh;
+          margin-top: 20px;
+        }
+      </style>
+</head>
+<body>
+    <div class="slide">
+  <div class="content">
+    <h1>第一张幻灯片</h1>
+    <textarea id="textContent" placeholder="在这里输入文字内容..."></textarea>
+    <input type="file" accept="image/*" id="imgInput">
+    <img id="imgPreview" src="#" alt="图片预览">
+    <button id="saveButton">保存</button> <!-- 添加保存按钮 -->
+ <!-- </div>
+</div>
+
+<script>
+  const imgInput = document.getElementById('imgInput');
+  const imgPreview = document.getElementById('imgPreview');
+  const textContent = document.getElementById('textContent');
+  const saveButton = document.getElementById('saveButton');
+
+  imgInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      imgPreview.src = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+  });
+
+  saveButton.addEventListener('click', function() {
+    const formData = new FormData();
+    formData.append('text', textContent.value);
+    formData.append('image', imgInput.files[0]);
+
+    fetch('appointment.html', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      if (response.ok) {
+        // 返回预约页面或其他操作
+        console.log('保存成功');
+      } else {
+        throw new Error('保存失败');
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  });
+</script>
+</body>
+</html>

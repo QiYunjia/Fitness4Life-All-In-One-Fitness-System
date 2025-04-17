@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Directory</title>
+    <style>
+        :root {
+            --Red: hsl(1, 90%, 64%);
+            --Blue: hsl(219, 85%, 26%);
+            --White: hsl(0, 0%, 100%);
+            --Very-light-grayish-blue: hsl(206, 54%, 97%);
+            --Light-grayish-blue-1: hsl(216, 56%, 95%);
+            --Light-grayish-blue-2: hsl(205, 33%, 90%);
+            --Grayish-blue: hsl(219, 14%, 63%);
+            --Dark-grayish-blue: hsl(219, 12%, 42%);
+            --Very-dark-blue: hsl(224, 21%, 14%);
+            --bg: #222529;
+        }
+        * {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg);
+        }
+        .container {
+            margin: 2rem;
+            background-color: var(--White);
+            padding: 1.5rem;
+            border-radius: 10px; 
+            
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .btn-custom {
+            display: inline-block;
+            border-radius: 25px;
+            background: var(--Blue);
+            color: var(--White);
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .btn-custom:hover {
+            background: var(--Blue);
+        }
+        .btn-custom2 {
+            display: inline-block;
+        border-radius: 10px;
+        background-color:  hsl(240, 60%, 54%);
+        border: none;
+        color: #ffff;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 400;
+        padding: 10px;
+        width: 150px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin-bottom: 5px;
+        vertical-align: middle;
+        text-decoration: none;
+        }
+        .btn-custom2:hover {
+            background: hsl(240, 60%, 54%);
+        }
+        .table-custom {
+            background-color: var(--Very-light-grayish-blue);
+            margin-bottom: 2rem;
+            border-collapse: collapse;
+        }
+        .table-custom th,
+
+        .table-custom td {
+            padding: 12px 15px;
+            border: 1px solid var(--Light-grayish-blue-1);
+        }
+        .table-custom thead {
+            background-color: var(--Light-grayish-blue-2);
+            color: var(--Very-dark-blue);
+        }
+        .table-custom tbody tr:nth-child(odd) {
+            background-color: var(--Light-grayish-blue-1);
+        }
+        .title {
+            color: var(--Very-dark-blue);
+            font-size: 2rem;
+        }
+        
+        .niceButton5 {
+        display: inline-block;
+        border-radius: 15px;
+        background-color:  hsl(240, 60%, 54%);
+        border: none;
+        color: #ffff;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 400;
+        padding: 18px;
+        width: 120px;
+        transition: all 0.5s;
+        cursor: pointer;
+        /* margin: 5px; */
+        vertical-align: middle;
+        display: flex;
+    align-items: center; 
+    justify-content: center;
+      }
+        
+      .niceButton5 span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+      }
+      .niceButton5 span::before {
+        content: "<";
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+      }
+      .niceButton5:hover span {
+        padding-right: 30px;
+      }
+      .niceButton5:hover span::before {
+        opacity: 1;
+        right: 0;
+      }
+      a.no-color-change:link, a.no-color-change:visited {
+        color: var(--Very-dark-blue); 
+     
+    }
+
+    a.no-color-change:hover, a.no-color-change:active {
+        color: var(--Very-dark-blue); 
+    }
+    .text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    max-width: 300px; 
+}
+.trainer_card {
+          display: flex;
+          align-items: center;
+          border-radius: 0.5rem;
+          padding: 1rem;
+          background-color: var(--Very-light-grayish-blue);
+      }
+      @media only screen and (max-width: 600px) {
+            .table-custom, .table-custom thead, .table-custom tbody, .table-custom th, .table-custom td, .table-custom tr {
+                display: block;
+            }
+
+            .table-custom th,
+            .table-custom td {
+                text-align: left;
+            }
+
+            .table-custom thead {
+                display: none;
+            }
+
+            .table-custom tbody tr {
+                margin-bottom: 10px;
+            }
+
+            .table-custom td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+
+            .table-custom td:before {
+                content: attr(data-title);
+                position: absolute;
+                top: 0;
+                left: 10px;
+                font-weight: bold;
+                text-align: left;
+            }
+
+            .header {
+                flex-direction: column;
+            }
+
+            .header h1,
+            .header .niceButton5 {
+                margin-bottom: 15px;
+            }
+
+            .header .niceButton5 {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .btn-custom,
+            .niceButton5 {
+                font-size: 0.8em;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="niceButton5" type="button" style="line-height: 23px; height: 50px;" onclick="window.location.href='/manager_page'"><i class="bi bi-arrow-left"></i><span class="lead" style="font-size: 1.1em"> Back</span></button>
+            <h1 class="title">Trainer Directory</h1>
+        </div>
+        
+        <a th:href="@{/trainers/showFormForAdd}" class="btn-custom2">Add Trainer</a>
+        <div th:if="${trainers.isEmpty()}" class="trainer_card">
+            <div class="description">
+                <p>Currently no trainers.</p>
+            </div>
+        </div>
+        <table class="table table-custom">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Level</th>
+                <th>Time Collection</th>
+                <th>Course</th>
+                <th>Coursename</th>
+                <th>Intro</th>
+                <th>Update</th>
+                <th>View Comment</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="tempTrainer : ${trainers}">
+                    <td>
+                        <a th:href="@{/trainers/showFormForReadonly(trainerId=${tempTrainer.id})}" th:text="${tempTrainer.name}" class="no-color-change"></a>
+                    </td>
+                    <td th:text="${tempTrainer.age}"></td>
+                    <td th:text="${tempTrainer.level}"></td>
+                    <td th:text="${tempTrainer.timeCollection}"></td>
+                    <td th:text="${tempTrainer.course}"></td>
+                    <td th:text="${tempTrainer.coursename}"></td>
+                    <td th:text="${tempTrainer.intro}" class="text-ellipsis"></td>
+                    
+                    <td>
+                            <a th:href="@{/trainers/showFormForUpdate(trainerId=${tempTrainer.id})}"
+                            class="btn btn-info btn-sm btn-custom">
+                             Update </a>
+                     </td>
+                        <td>
+                        <a th:href="@{/trainers/{trainerId}/comments(trainerId=${tempTrainer.id})}" class="btn-custom">Comments</a>
+                    </td>
+                </tr>
+                </tbody>
+                
+        </table>
+    </div>
+</body>
+</html>

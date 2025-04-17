@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+    <link rel="stylesheet" href="style.css" />
+    <title>Notifications page</title>
+    <style>:root {
+        --Red: hsl(1, 90%, 64%);
+        --Blue: hsl(219, 85%, 26%);
+        --White: hsl(0, 0%, 100%);
+        --Very-light-grayish-blue: hsl(206, 54%, 97%);
+        --Light-grayish-blue-1: hsl(216, 56%, 95%);
+        /* --Light-grayish-blue-1: hsl(211, 68%, 94%); */
+        --Light-grayish-blue-2: hsl(205, 33%, 90%);
+        --Grayish-blue: hsl(219, 14%, 63%);
+        --Dark-grayish-blue: hsl(219, 12%, 42%);
+        --Very-dark-blue: hsl(224, 21%, 14%);
+        --bg:#222529
+
+      }
+      * {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        background-color: var(--bg);
+      }
+      /* 通知框 */
+      .container {
+        /* margin-bottom:2rem; */
+        margin: 2rem auto;
+        width: 1350px;
+        background-color: var(--White);
+        padding: 1.5rem 1rem;
+        border-radius: 0.5rem;
+      
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 7.4rem;
+      }
+      .notif_box {
+        display: flex;
+        align-items: center;
+      }
+      #notifes {
+        background-color: var(--Blue);
+        margin-left: 0.5rem;
+        width: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        color: var(--White);
+        font-weight: 800;
+        border-radius: 0.5rem;
+      }
+      #mark_all {
+        cursor: pointer;
+        /* margin-top: 100px; */
+      }
+      #mark_all:hover {
+        color: var(--Blue);
+      }
+  
+      p {
+        color: var(--Dark-grayish-blue);
+      }
+      main {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .notif_card {
+        display: flex;
+        align-items: center;
+        border-radius: 0.5rem;
+        padding: 1rem;
+      }
+      img{
+        width: 50px;
+      }
+      .description{
+        margin-left: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      strong{
+        color: var(--Very-dark-blue);
+        cursor: pointer;
+      }
+      strong:hover{
+        color: var(--Blue);
+      }
+      
+      .notif_card{
+        background-color: var(--Very-light-grayish-blue) !important;
+      }
+      .unread{
+        background-color: var(--Light-grayish-blue-1) !important;
+      }
+      .unread p:first-of-type::after{
+        content: " ";
+        background-color: var(--Red);
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+        border-radius: 50%;
+      }
+      .message_card{
+        display: flex;
+        align-items: center;
+      
+      }
+      .message{
+        padding: 1rem;
+        border: 1px solid var(--Light-grayish-blue-2);
+        border-radius: .3rem;
+        cursor: pointer;
+        margin: 0 0 0 5rem;
+      }
+      .message:hover{
+        background-color: var(--Light-grayish-blue-1);
+      }
+      .chess_img{
+      margin-left: auto;
+      }
+     
+      @media screen and (max-width:550px) {
+        .container{
+          margin: 0;
+        }
+      }
+     
+      .title {
+        position: relative;
+        top: 50px;
+  font-size: 56px; 
+}
+
+.niceButton5 {
+        display: inline-block;
+        border-radius: 20px;
+        background-color:  hsl(240, 60%, 54%);
+        border: none;
+        color: #ffff;
+        text-align: center;
+        font-size: 28px;
+        font-weight: 400;
+        padding: 18px;
+        width: 150px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+        vertical-align: middle;
+      }
+      .niceButton5 span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+      }
+      .niceButton5 span::before {
+        content: "<";
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+      }
+      .niceButton5:hover span {
+        padding-right: 30px;
+      }
+      .niceButton5:hover span::before {
+        opacity: 1;
+        right: 0;
+      }
+      #mark_all {
+    position: relative;
+    top: 130px;
+    right: 88%;
+    color: var(--Red);
+    font-size: 19px;
+}
+      
+.container {
+  background-image: url('notify.svg'); 
+  background-repeat: no-repeat; 
+  background-size:300px; 
+  background-position: 98% 1rem;
+  /* background-position: auto auto; */
+ 
+}
+#notifes {
+    margin-top: 40px;
+}
+      </style>
+  </head>
+  <body>
+    
+    <!-- <section>
+     
+     
+      
+  </section> -->
+
+    <div class="container">
+
+      <header>
+        <button class="niceButton5" type="button" style="line-height: 23px; height: 65px;" onclick="history.back()"><i class="bi bi-arrow-left"></i><span class="lead" style="font-size: 1.1em"> Back</span></button>
+        <div class="notif_box">
+          <h2 class="title">Notifications</h2>
+          <span id="notifes"></span>
+        </div>
+        <p id="mark_all">Mark all as read</p>
+      </header>
+      <main>
+
+
+        <select id="notificationType" onchange="filterNotifications()">
+          <option value="all">All</option>
+          <option value="appointment">Appointment Confirmation Notification</option>
+          <option value="activity">Activity Notification</option>
+      </select>
+
+      <div th:each="appointment : ${appointments}" class="notif_card unread appointment" onclick="toggleDetails(this)">
+        <div class="description">
+            <p class="user_activity">
+                <strong>Appointment Confirmation Notification</strong>
+                <span>Thank you for booking </span><b th:text="${appointment.courseName}"></b><span> Course.</span>
+                <span> We are pleased to inform you that your appointment has been confirmed.</span>
+                <b>Click to view details</b>
+                <span class="details" style="display: none;">
+                    Time:<span th:text="${appointment.date} + ' ' + ${appointment.time}"></span> <br />
+                    Trainer:<span th:text="${trainerNames[appointment.trainerId]}"></span><br />
+                    Course:<span th:text="${appointment.courseName}"></span><br />
+                </span>
+            </p>
+            <!-- <p class="time" th:text="${appointment.date} + ' ' + ${appointment.time}"></p> -->
+        </div>
+    </div>
+    <div th:each="noti : ${notis}" class="notif_card unread activity" onclick="toggleDetails(this)">
+        <div class="description">
+            <p class="user_activity">
+                <strong>Activity Notification</strong>
+                <span th:text="${noti.notiname}" style="display: inline;">Title</span>
+                <span th:text="${noti.content}" style="display: none;"></span>
+                <b>Click to view details</b>
+                <span class="details" style="display: none;">
+                    <span th:text="${noti.content}"></span>
+                </span>
+            </p>
+            <p class="time" th:text="${noti.time}"></p>
+        </div>
+    </div>
+      </main>
+    </div>
+
+    <script>
+      function toggleDetails(card) {
+          var details = card.querySelector('.details');
+          if (details.style.display === 'none') {
+              details.style.display = 'block';
+          } else {
+              details.style.display = 'none';
+          }
+      }
+  
+      const unreadMessages = document.querySelectorAll(".unread");
+      const unread = document.getElementById("notifes");
+      const markAll = document.getElementById("mark_all");
+      const notificationTypeSelect = document.getElementById("notificationType");
+  
+      function filterNotifications() {
+          const selectedType = notificationTypeSelect.value;
+          unreadMessages.forEach(message => {
+              if (selectedType === 'all' || message.classList.contains(selectedType)) {
+                  message.style.display = 'block';
+              } else {
+                  message.style.display = 'none';
+              }
+          });
+      }
+  
+      unread.innerText = unreadMessages.length;
+  
+      unreadMessages.forEach((message) => {
+          message.addEventListener("click", () => {
+              message.classList.remove("unread");
+              const newUnreadMessages = document.querySelectorAll(".unread");
+              unread.innerText = newUnreadMessages.length;
+          })
+      });
+  
+      markAll.addEventListener("click", () => {
+          unreadMessages.forEach(message => message.classList.remove("unread"));
+          const newUnreadMessages = document.querySelectorAll(".unread");
+          unread.innerText = newUnreadMessages.length;
+      });
+  
+      filterNotifications();
+  </script>
+  </body>
+</html>
+
+

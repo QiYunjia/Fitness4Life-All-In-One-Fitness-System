@@ -1,0 +1,71 @@
+@media(min-width: 768px) {
+  .news-input {
+    width: 50%;
+  }
+}
+
+@media(min-width: 1179px) {
+  .login {
+    margin-left: 0.25rem;
+    margin-right: 0.75rem;
+  }
+
+  .gap-custom {
+    gap: 1rem;
+  }
+}
+
+@media(max-width: 1178px) {
+  .account {
+    width: 100%;
+  }
+
+  .login {
+    margin-bottom: 10px;
+  }
+
+  .gap-custom {
+    margin-bottom: 0.25rem;
+  }
+
+}
+
+body::before {
+    display: block;
+    content: '';
+    height: 60px;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+@media (min-width: 1179px){
+  .navbar-expand-custom {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .navbar-expand-custom .navbar-nav {
+    flex-direction: row;
+  }
+  .navbar-expand-custom .dropdown-menu {
+    position: absolute;
+  }
+  .navbar-expand-custom .nav-link {
+    padding-right: .5rem;
+    padding-left: .5rem;
+  }
+  .navbar-expand-custom > .container {
+    flex-wrap: nowrap;
+  }
+  .navbar-expand-custom .navbar-collapse {
+    display: flex!important;
+    flex-basis: auto;
+  }
+  .navbar-expand-custom .navbar-toggler {
+    display: none;
+  }
+}

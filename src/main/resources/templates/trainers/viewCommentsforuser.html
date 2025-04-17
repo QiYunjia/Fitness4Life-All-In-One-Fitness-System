@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments for Trainer</title>
+    <style>
+       
+
+      :root {
+          --Red: hsl(1, 90%, 64%);
+          --Blue: hsl(219, 85%, 26%);
+          --White: hsl(0, 0%, 100%);
+          --Very-light-grayish-blue: hsl(206, 54%, 97%);
+          --Light-grayish-blue-1: hsl(216, 56%, 95%);
+          --Light-grayish-blue-2: hsl(205, 33%, 90%);
+          --Grayish-blue: hsl(219, 14%, 63%);
+          --Dark-grayish-blue: hsl(219, 12%, 42%);
+          --Very-dark-blue: hsl(224, 21%, 14%);
+          --bg:#222529
+      }
+      * {
+          font-family: "Plus Jakarta Sans", sans-serif;
+          padding: 0;
+          margin: 0;
+          box-sizing: border-box;
+      }
+      body {
+          min-height: 100vh;
+          display: flex;
+          justify-content: center;
+          background-color: var(--bg);
+      }
+      .container {
+          margin: 2rem auto;
+          width: 1350px;
+          background-color: var(--White);
+          padding: 1.5rem 1rem;
+          border-radius: 0.5rem; 
+      }
+      
+      .comment_box {
+            position: relative;
+            /* top: 50px; */
+            font-size: 44px; 
+            display: flex;
+            justify-content: center; 
+            margin-bottom: 1.5rem;
+            width: 100%; 
+            }
+      .title {
+        
+        font-size: 44px;
+        /* margin: auto; */
+        /* margin-right: 30px; */
+
+      }
+      .header {
+        position: relative;
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+        margin-bottom: 3.4rem;
+}
+      .comment_card {
+          display: flex;
+          align-items: center;
+          border-radius: 0.5rem;
+          padding: 1rem;
+          background-color: var(--Very-light-grayish-blue);
+      }
+            .niceButton5 {
+            display: inline-block;
+            border-radius: 15px;
+            background-color: hsl(240, 60%, 54%);
+            border: none;
+            color: #ffff;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 400;
+            padding: 18px;
+            width: 120px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+            vertical-align: middle;
+            display: flex;
+    align-items: center; 
+    justify-content: center;
+        }
+        .niceButton5 span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+        .niceButton5:hover span {
+            padding-right: 30px;
+        }
+        .niceButton5:hover span::before {
+            content: "<";
+            position: absolute;
+            opacity: 1;
+            top: 0;
+            right: 0;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <header>
+            <button class="niceButton5" type="button" style="line-height: 23px; height: 50px;" onclick="window.location.href='../userlist'"><i class="bi bi-arrow-left"></i><span class="lead" style="font-size: 1.1em"> Back</span></button>
+            <div class="comment_box">
+                <h2 class="title">Comments for Trainer: <span th:text="${trainerName}">Trainer's Name</span></h2>
+                <!-- <p>Comments on our trainers</p> -->
+            </div>
+        </header>
+        <main>
+            <div th:if="${comments.isEmpty()}" class="comment_card">
+                <div class="description">
+                    <p>No comments available.</p>
+                </div>
+            </div>
+
+            <div th:each="comment : ${comments}" class="comment_card">
+                <div class="description">
+                    <p th:text="${comment.content}">This is a comment example.</p>
+                </div>
+            </div>
+        </main>
+        <!-- <div style="margin: 1rem 0; text-align: center;">
+            <button class="niceButton5" type="button" onclick="history.back()">
+                <span>Back</span>
+            </button> -->
+        </div>
+    </div>
+</body>
+</html>

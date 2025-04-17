@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./VA.css">
+    <!-- 导入Bootstrap的CSS文件 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <div  class="tab0">
+    </div>
+
+    <div class="tab1">
+        <div class="tab1-item active" onclick="switchTab('current')">
+            My Current Appointment
+        </div>
+        <div class="tab1-item" onclick="switchTab('history')">
+            Appointment History
+        </div>
+    </div>
+    
+    <div class="another-page active" id="current-page">
+        <!-- My Current Appointment页面内容 -->
+
+        <div class="list">
+            <div class="list-item">
+                <img src="./教练1.png" />
+                <div class="list-item-title">
+                    Yoga Sculpt
+                </div>
+                <div class="list-item-info">
+                    <div class="list-item-tags">
+                        <span>5 star</span>
+                        <span>90 min</span>
+                        <span>David Brown</span>
+                    </div>
+                    <div class="list-item-time">
+                        <span> Schedule Time: </span> 
+                        <span>May 20th, 17:30</span> 
+                    </div>
+                    <div>
+                        <span class="list-item-price">Upcoming Courses</span>
+                    </div>
+                </div>
+                <div class="list-item-right">
+                    <div class="list-item-btn" onclick="openModal1()">Cancel</div>
+                </div>
+
+                <div class="list-item-right1">
+                    <div class="list-item-btn1" onclick="openModal2()">Modify</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="another-page" id="history-page">
+        <!-- Appointment History 页面内容 -->
+        <h2>Appointment history</h2>
+        <!-- 添加您需要显示的内容 -->
+    </div>
+
+    <!-- cancel弹窗设计 -->
+    <div id="myModal1" class="modal1">
+        <div class="modal-content1">
+            <p>Are you sure you want to cancel this appointment? </p>
+            <p>(Once the operation is executed, it cannot be undone)</p>
+            <button class="yes-btn" onclick="openModalCombine()">Yes</button>
+            <button class="no-btn" onclick="closeModal1()">No</button>
+        </div>
+    </div>
+
+
+     <!-- 删除成功弹窗设计 -->
+     <div id="myModal11" class="modal11">
+        <div class="modal-content11">
+            <p>You have cancelled the appointment successfully. </p>
+            <button class="close-btn" onclick="closeModal11()">Close</button>
+        </div>
+    </div>
+
+    <!-- modify弹窗设计 -->
+    <div id="myModal2" class="modal2">
+        <div class="modal-content2">
+            <span class="course-label1">Your course is: </span> <span class="course-label2">Yoga Sculpt</span>
+            <span class="coach-label1">Your coach is: </span> <span class="coach-label2">David Brown</span>
+            <br>
+            <span class="time-label1">The current schedule time is:</span>  <span class="time-label2">May 20th, 17:30</span> 
+            <p>If you would like to change your appointment time, please select your desired time below.</p>
+
+        
+            <div class="flex-container">
+                <div>
+                    <label>Choose a Date:</label>
+                    <select id="dateSelect">
+                        
+                    </select>
+                </div>
+            
+                <div>
+                    <label>Choose a time:</label>
+                    <select>
+                        <option value="9:00">9:00 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="13:00">1:00 PM</option>
+                        <option value="14:00">2:00 PM</option>
+                        <option value="15:00">3:00 PM</option>
+                        <option value="16:00">4:00 PM</option>
+                        <option value="17:00">5:00 PM</option>
+                        <option value="18:00">6:00 PM</option>
+                        <option value="19:00">7:00 PM</option>
+                        <option value="20:00">8:00 PM</option>
+                    </select>
+                </div>
+            </div>
+           
+            <br>
+            <button class="confirm-btn" onclick="openModalCombine1()">Confirm</button>
+            <button class="close-btn" onclick="closeModal2()">Close</button>
+        </div>
+    </div>
+
+    <!-- modify成功弹窗设计 -->
+    <div id="myModal21" class="modal21">
+        <div class="modal-content21">
+            <p>You have modified the appointment successuflly!</p>
+            <button class="ok-btn" onclick="closeModal21()">OK</button>
+        </div>
+    </div>
+
+
+
+    <!-- 导入Bootstrap的JavaScript文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+        // Get the select element for date
+        var dateSelect = document.getElementById("dateSelect");
+    
+        // Get current date
+        var currentDate = new Date();
+    
+        // Loop through next 7 days
+        for (var i = 0; i < 7; i++) {
+            // Create a new date object for each day
+            var date = new Date(currentDate);
+            date.setDate(currentDate.getDate() + i);
+    
+            // Format date as "Month Day"
+            var formattedDate = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    
+            // Create an option element
+            var option = document.createElement("option");
+    
+            // Set value and text of option
+            option.value = formattedDate;
+            option.textContent = formattedDate;
+    
+            // Append option to select element
+            dateSelect.appendChild(option);
+        }
+
+
+        //控制黑栏中view appoiment和appoinemt history下方蓝条
+        var tab1 = document.querySelector('.tab1');
+            tab1.querySelectorAll('.tab1-item').forEach(function (item, index) {
+                item.addEventListener('click', function () {
+                    tab1.querySelectorAll('.tab1-item').forEach(function (item) {
+                        item.classList.remove('active')
+                    })
+                    this.classList.add('active')
+                })
+            })
+    
+        
+        //控制下方页面转换    
+        function switchTab(tabName) {
+            // 隐藏所有页面
+            document.querySelectorAll('.another-page').forEach(function(page) {
+                page.classList.remove('active');
+            });
+    
+            // 显示选定的页面
+            document.getElementById(tabName + '-page').classList.add('active');
+        }
+    
+        
+            // 打开cancel弹窗
+        function openModal1() {
+            var modal = document.getElementById("myModal1");
+            modal.style.display = "block";
+            }
+    
+            // 关闭cancel弹窗
+        function closeModal1() {
+                var modal = document.getElementById("myModal1");
+                modal.style.display = "none";
+            }
+            
+            // 打开删除成功弹窗
+        function openModal11() {
+            var modal = document.getElementById("myModal11");
+            modal.style.display = "block";
+            }
+    
+            // 关闭删除成功弹窗
+        function closeModal11() {
+                var modal = document.getElementById("myModal11");
+                modal.style.display = "none";
+            }
+    
+        function openModalCombine() {
+                closeModal1(); // 关闭myModal1窗口
+                openModal11(); // 打开myModal11窗口
+                deleteAppointment(); // 删除list中的内容
+            }
+        
+        function deleteAppointment() {
+        
+            // 移除.list元素及其内部内容
+            var listElement = document.querySelector('.list');
+            if (listElement) {
+                listElement.parentNode.removeChild(listElement);
+            }
+        }
+    
+            // 打开modify弹窗
+        function openModal2(listIndex) {
+            var modal = document.getElementById("myModal2");
+            modal.style.display = "block";
+            }
+    
+            // 关闭modify弹窗
+        function closeModal2() {
+            var modal = document.getElementById("myModal2");
+            modal.style.display = "none";
+             }
+
+            // 打开modify确认弹窗
+        function openModal21(listIndex) {
+            var modal = document.getElementById("myModal21");
+            modal.style.display = "block";
+            }
+
+            // 关闭modify确认弹窗
+        function closeModal21() {
+            var modal = document.getElementById("myModal21");
+            modal.style.display = "none";
+                }
+
+        
+            
+        function openModalCombine1() {
+            closeModal2(); // 关闭myModal2窗口
+            openModal21(); // 打开myModal21窗口
+        }
+
+
+        
+        
+    </script>
+</body>
+
+
+</html>

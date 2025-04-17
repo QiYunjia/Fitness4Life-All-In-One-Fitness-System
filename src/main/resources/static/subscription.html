@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan subscription</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="subscriptionstyle.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body class="bg">
+    <!-- Header -->
+    <section>
+        
+            <button class="btn btn-outline-info hBack mt-2 ms-5" type="button" onclick="history.back()"><i class="bi bi-arrow-left"></i><span class="lead"> Back</span></button>
+        
+    </section>
+        
+
+    <!-- title -->
+    <section class="bg-warning-subtle text-black text-center ms-5 me-5 mt-3 mb-4 border-black border border-2 rounded-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1 class="display-4 mt-1">Subscription</h1>
+                    <p class="lead">Subscribe to a fitness plan that suits your needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans -->
+
+    <section class="bg-light ms-5 me-5 rounded-3">
+        <div class="container">
+            <div class="cards row p-4 gy-sm-0 g-3">
+                <div class="col-md-4">
+                    <div class="card w-100 h-100">
+                        <div class="card-body text-center">
+                            <img src="silver.svg"  class="imgg img-fluid d-none d-sm-block rounded-circle mb-3" alt="">
+                            <h4 class="card-title text-center mb-2">
+                                Silver Plan
+                            </h4>
+                            <p class="card-text">
+                                Perfect for beginners looking to get started.
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <div class="card-selector-wrapper">
+                                <!-- <select class="card-selector rounded-1">
+                                    <option value="6">6 Months</option>
+                                    <option value="12">12 Months</option>
+                                </select> -->
+                                <div class="mb-0 text-start" style="font-size: 0.9em; font-style:italic">*Trainer Rank:</div>
+                                <div class="star-rating mb-2">★★★☆☆</div>
+                                <button class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#pay">Join</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card w-100 h-100">
+                        <div class="card-body text-center">
+                            <img src="gold.svg"  class="imgg img-fluid d-none d-sm-block rounded-circle mb-3" alt="">
+                            <h4 class="card-title text-center mb-2">
+                                Gold Plan
+                            </h4>
+                            <p class="card-text">
+                                Intermediate level training for those seeking faster results.
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <div class="card-selector-wrapper">
+                                <!-- <select class="card-selector rounded-1">
+                                    <option value="6">6 Months</option>
+                                    <option value="12">12 Months</option>
+                                </select> -->
+                                <div class="mb-0 text-start" style="font-size: 0.9em; font-style:italic">*Trainer Rank:</div>
+                                <div class="star-rating mb-2">★★★★☆</div>
+                                <button class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#pay">Join</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card w-100 h-100">
+                        <div class="card-body text-center">
+                            <img src="diamond.svg"  class="imgg img-fluid d-none d-sm-block rounded-circle mb-3" alt="">
+                            <div class="card-title text-center mb-2 h4">
+                                Diamond Plan
+                            </div>
+                            <p class="card-text">
+                                Advanced personalized coaching for experienced athletes.
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <div class="card-selector-wrapper">
+                                <!-- <select class="card-selector rounded-1">
+                                    <option value="6">6 Months</option>
+                                    <option value="12">12 Months</option>
+                                </select> -->
+                                <div class="mb-0 text-start" style="font-size: 0.9em; font-style:italic">*Trainer Rank:</div>
+                                <div class="star-rating mb-2">★★★★★</div>
+                                <button class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#pay">Join</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Plan details -->
+    <section class="bg-secondary text-light m-5 rounded-3">
+        <div class="container">
+            <p class="lead text-center">Plan details goes here</p>
+            <p class="text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium, aut. Ex labore minus eius pariatur facere, sequi asperiores numquam exercitationem maiores veniam officiis odio facilis mollitia eaque tenetur itaque dolorem blanditiis id rerum culpa. Odio nemo numquam suscipit eveniet, officiis tempore blanditiis labore voluptatum, commodi, repellat quia porro omnis veritatis?</p>
+        </div>
+    </section>
+
+    <!-- Modal -->
+
+<div class="modal fade" id="pay" tabindex="-1" aria-labelledby="payLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="payLabel">Payment for XXX Plan</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          payment details (or goes to anoter payment method page)
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- <script src="app.js"></script> -->
+<!-- <script>
+    $(".hBack").on("click", function(e){
+        e.preventDefault();
+        window.history.back();
+    });
+</script> -->
+
+</body>
+</html>

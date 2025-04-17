@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Courses</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #673ab7;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        h1 {
+            flex-grow: 1;
+            text-align: center;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+        }
+
+        .course-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .course-info h3 h4 {
+            transform: translateY(-20px);
+        }
+
+        .course-info p {
+            width: 99%;
+            transform: translateY(-20px);
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .course-info img {
+            flex-shrink: 0;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .course-info>div {
+            flex-grow: 1;
+        }
+
+        .course-action {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            background: #673ab7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+        .back_button {
+            padding: 10px 25px;
+            background: #4481eb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+        .addCourse_button {
+            padding: 10px 25px;
+            background: #4481eb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        .btn:hover {
+            background: #5e35b1;
+        }
+
+        .clickable {
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <a href="/manager_page" class="btn back_button">Back</a>
+        <h1>Manage Courses</h1>
+        <a href="/addCourse" class="btn addCourse_button">Add Course</a>
+    </div>
+
+    <div class="container" id="course-container">
+    </div>
+    <script>
+        window.onload = function () {
+            fetchCourses();
+        };
+        function fetchCourses() {
+            fetch('courses')
+                .then(response => response.json())
+
+                .then(data => {
+                    var listContainer = document.getElementById("course-container");
+                    listContainer.innerHTML = "";
+                    data.forEach(cl => {
+                        var listItem = document.createElement("div");
+                        listItem.className = "list-item";
+                        listItem.innerHTML = `
+                <div class="course-item">
+                    <div class="course-info">
+                        <img src=${cl.image_url} alt="Course" width="100" height="100">
+                        <div>
+                            <h3>${cl.name} Course</h3>
+                            <h4>Description</h4>
+                            <p>${cl.description}</p>
+                        </div>
+                    </div>
+                    <div class="course-action">
+                        <a href="/modifyCourse/${cl.id}" class="btn">Modify</a>
+                        <a href="/deleteCourse/${cl.id}" class="btn">Delete</a>
+                    </div>
+                </div>`;
+                        listContainer.appendChild(listItem);
+                    });
+                })
+        }
+
+
+    </script>
+</body>
+
+</html>

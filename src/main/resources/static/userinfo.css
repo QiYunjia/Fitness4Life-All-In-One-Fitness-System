@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box;
+}
+
+@media (max-width: 688px) {
+    .form-group, .form-control {
+        width: 100% !important;
+    }
+}
+
+
+#page-content {
+    margin-left: 250px; 
+    padding-left: 5%; 
+    padding-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    height: 100vh;
+    overflow-y: auto; 
+}
+
+.sidebar {
+    position: fixed;
+    width: 250px;
+    top: 0px; 
+    left: 0;
+    bottom: 0;
+    background: #111;
+    padding-top: 20px; 
+    overflow-y: auto; 
+}
+
+.sidebar h1 {
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-weight: 400;
+    margin: 0;
+    font-size: 25px;
+    text-transform: uppercase;
+}
+
+.sidebar a {
+    display: block;
+    padding: 27.5px 20px;
+    color: #bbb;
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: margin-left 0.4s; 
+}
+
+.sidebar a:hover {
+    color: #fff;
+    margin-left: 20px;
+}
+
+/* .custom-file-upload {
+    padding: 6px 12px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    display: inline-block;
+    background-color: #f8f8f8;
+} */
+
+/* input[type="file"] {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+} */

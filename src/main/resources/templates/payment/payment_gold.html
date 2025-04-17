@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Fitness4Life</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="paymentstyle.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body>
+<section class="">
+
+
+
+    <div class="row">
+        <div class="col-6">
+            <!-- Header -->
+            <section class="">
+                <button class="btn btn-sm btn-outline-danger hBack mt-2 mb-2 ms-2" type="button" onclick="history.back()"><i class="bi bi-arrow-left"></i><span class="lead" style="font-size: 1.1em"> Back</span></button>
+            </section>
+        </div>
+        <div class="col-6 coltwo"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5 ps-lg-5 pe-lg-5">
+            <div class="container custom-width">
+                <div class="container">
+                    <h2 class="">Payment details</h2>
+                </div>
+                <!-- Billing cycle -->
+                <section>
+                    <div class="container">
+                        <div class="mt-4 h4 mb-3">
+                            Billing cycle
+                        </div>
+                        <form th:action="@{/gold_order}" th:object="${goldOrder}" id="payoptions" method="POST">
+                            <div th:each="plan : ${plans}">
+                                <label class="btn payoption rounded-3 d-flex align-items-center w-100 bg-white mb-2" th:if="${plan.id == 3}" for="six-months" id="payoption1">
+                                    <div class="form-check ms-2">
+                                        <input class="form-check-input" type="radio" name="planName" id="six-months" th:value="'Gold Plan (6 months)'" checked style="font-size:1.2em" th:attr="data-price=${plan.price}, data-duration=${plan.name}">
+                                        <label class="form-check-label ms-1" for="six-months" style="pointer-events:none; font-size:larger;" th:text="${plan.content}">
+                                            6 months
+                                        </label>
+                                    </div>
+                                </label>
+                                <label class="btn payoption rounded-3 d-flex align-items-center w-100 bg-white" th:if="${plan.id == 4}" for="twelve-months" id="payoption2">
+                                    <div class="form-check ms-2">
+                                        <input class="form-check-input" type="radio" name="planName" id="twelve-months" th:value="'Gold Plan (12 months)'" style="font-size:1.2em" th:attr="data-price=${plan.price}, data-duration=${plan.name}">
+                                        <label class="form-check-label ms-1" for="twelve-months" style="pointer-events:none;font-size:larger;" th:text="${plan.content}">
+                                            12 months
+                                        </label>
+                                    </div>
+                                </label>
+                            </div>
+                        </form>
+                        <!-- <div class="input-group mb-3">
+                            <div class="input-group-text border-end-0 bg-white border-black">
+                              <input name="billing-options" class="form-check-input mt-0" type="radio" aria-label="Checkbox for following text input">
+                            </div>
+                            <input type="text" class="form-control-lg w-75 border-start-0 bg-white border-1 border-black" value="6 months" aria-label="Text input with checkbox" disabled>
+
+                          </div>
+
+                          <div class="input-group">
+                            <div class="input-group-text border-end-0 bg-white border-black">
+                              <input name="billing-options" class="form-check-input mt-0" type="radio" value="" aria-label="Radio button for following text input">
+                            </div>
+                            <input type="text" class="form-control-lg w-75 border-start-0 border-1 bg-white border-black" value="12 months" aria-label="Text input with radio button" disabled>
+
+                          </div> -->
+                    </div>
+                </section>
+
+                <!-- Payment method -->
+                <section>
+                    <div class="container">
+                        <div class="mt-4 mb-3 h4">
+                            Payment method
+                        </div>
+                        <!-- method choices -->
+                        <div class="btn-group" role="tablist" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check nav-link active" name="btnradio" id="btnradio1" autocomplete="off" checked data-bs-toggle="tab" data-bs-target="#nav-card" role="tab" aria-selected="true">
+                            <label class="btn btn-outline-dark" for="btnradio1"><i class="bi bi-credit-card-fill"></i> Card</label>
+
+                            <input type="radio" class="btn-check nav-link" name="btnradio" id="btnradio2" autocomplete="off" data-bs-toggle="tab" data-bs-target="#nav-wechat" role="tab" aria-selected="false">
+                            <label class="btn btn-outline-dark" for="btnradio2"><i class="bi bi-wechat"></i> WeChat Pay</label>
+
+                            <input type="radio" class="btn-check nav-link" name="btnradio" id="btnradio3" autocomplete="off" data-bs-toggle="tab" data-bs-target="#nav-alipay" role="tab" aria-selected="false">
+                            <label class="btn btn-outline-dark" for="btnradio3"><i class="bi bi-alipay"></i> Alipay</label>
+                        </div>
+
+                        <!-- tab-content -->
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-card" role="tabpanel" aria-labelledby="nav-card-tab" tabindex="0">
+                                <form id="card-details">
+                                    <div class="mt-2 fw-semibold mb-1" style="font-size:small;">Name on card</div>
+                                    <input id="nameoncard" class="form-control" type="text" placeholder="" aria-label="Name on card" required>
+                                    <div class="mt-2 fw-semibold mb-1" style="font-size:small;">Card details</div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control rounded-bottom-0" placeholder="Card number" aria-label="Card number" aria-describedby="basic-addon2" style="font-size:0.9em" required>
+                                        <span class="input-group-text rounded-bottom-0" id="basic-addon2"><i class="bi bi-credit-card-2-back"></i></span>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" aria-label="First name" class="form-control border-top-0 rounded-top-0" placeholder="MM / YY" style="font-size:0.9em" required>
+                                        <input type="text" aria-label="Last name" class="form-control border-top-0 rounded-top-0" placeholder="CVV" style="font-size:0.9em" required>
+                                    </div>
+                                    <div class="mt-2 fw-semibold mb-1" style="font-size:small;">Billing postcode</div>
+                                    <input id="postcode" class="form-control" type="text" placeholder="" aria-label="Billing postcode" required>
+                                </form>
+
+                                <div class="custom-width hid-1">
+                                    <div class="container">
+                                        <h4 class="mt-3 mt-lg-0 mb-3">Order summary</h4>
+                                        <div class="h5 custom-text">Ordered plan</div>
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img src="gold.svg" class="img-fluid rounded-5 border border-1" alt="">
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="d-flex custom-text">Fitness4Life<span class="ms-auto" id="planPrice10">$10.0</span></div>
+                                                <div class="custom-text" style="color: gray;" id="planDuration4">Gold plan (6 months)</div>
+                                            </div>
+                                        </div>
+                                        <div class="border-bottom pb-2 mb-2"></div>
+                                    </div>
+                                    <div class="container">
+                                        <h5 class="border-bottom pb-2">
+                                            <div class="d-flex custom-text">Total payment<span class="ms-auto" id="planPrice11">$10.0</span></div>
+                                            <div class="mt-1 d-flex custom-text">Discount -0% <span class="ms-auto">-$0</span></div>
+                                        </h5>
+                                    </div>
+                                    <div class="container">
+                                        <h5 class="">
+                                            <div class="d-flex custom-text">Total due today<span class="ms-auto" id="planPrice12">$10.0</span></div>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <p class="lead mt-2">You’ll pay <span id="planPrice13"></span> for a <span id="planDuration5"></span> subscription.</p>
+                                <div class="input-group input-group-sm w-75 mt-3">
+                                    <span class="input-group-text rounded-start-4" id="inputGroup-sizing-sm">Promo code</span>
+                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                    <button class="btn btn-outline-success rounded-end-4" type="button" id="button-addon2">Apply</button>
+                                </div>
+                                <p class="mt-2 text-secondary" style="font-size: 12px;">By clicking Subscribe now, you agree to Fitness4Life’s <a href="#" class="fw-bold text-dark">Terms of Use</a> and <a href="#" class="fw-bold text-dark">Privaty Policy</a>.</p>
+                                <button type="submit" form="payoptions" class="btn btn-dark w-100 mt-0 mb-5 rounded-3">Subscribe now</button>
+                            </div>
+                            <div class="tab-pane fade" id="nav-wechat" role="tabpanel" aria-labelledby="nav-wechat-tab" tabindex="0">
+                                <div class="custom-width hid-1">
+                                    <div class="container">
+                                        <h4 class="mt-3 mt-lg-0 mb-3">Order summary</h4>
+                                        <div class="h5 custom-text">Ordered plan</div>
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img src="gold.svg" class="img-fluid rounded-5 border border-1" alt="">
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="d-flex custom-text">Fitness4Life<span class="ms-auto" id="planPrice7">$10.0</span></div>
+                                                <div class="custom-text" style="color: gray;" id="planDuration3">Gold plan (6 months)</div>
+                                            </div>
+                                        </div>
+                                        <div class="border-bottom pb-2 mb-2"></div>
+                                    </div>
+                                    <div class="container">
+                                        <h5 class="border-bottom pb-2">
+                                            <div class="d-flex custom-text">Total payment<span class="ms-auto" id="planPrice8">$10.0</span></div>
+                                            <div class="mt-1 d-flex custom-text">Discount -0% <span class="ms-auto">-$0</span></div>
+                                        </h5>
+                                    </div>
+                                    <div class="container">
+                                        <h5 class="">
+                                            <div class="d-flex custom-text">Total due today<span class="ms-auto" id="planPrice9">$10.0</span></div>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <p class="lead mt-2">You’ll pay <span id="planPrice14"></span> for a <span id="planDuration6"></span> subscription.</p>
+                                <div class="input-group input-group-sm mt-3 w-75">
+                                    <span class="input-group-text rounded-start-4" id="inputGroup-sizing-sm">Promo code</span>
+                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                    <button class="btn btn-outline-success rounded-end-4" type="button" id="button-addon2">Apply</button>
+                                </div>
+                                <p class="mt-2 text-secondary" style="font-size: 12px;">By clicking Continue with WeChat Pay, you agree to Fitness4Life’s <a href="#" class="fw-bold text-dark">Terms of Use</a> and <a href="#" class="fw-bold text-dark">Privaty Policy</a>.</p>
+                                <button type="button" class="btn btn-dark w-100 mt-0 mb-5 rounded-3">Continue with <i class="bi bi-wechat"></i> WeChat Pay</button>
+                            </div>
+                            <div class="tab-pane fade" id="nav-alipay" role="tabpanel" aria-labelledby="nav-alipay-tab" tabindex="0">
+                                <div class="custom-width hid-1">
+                                    <div class="container">
+                                        <h4 class="mt-3 mt-lg-0 mb-3">Order summary</h4>
+                                        <div class="h5 custom-text">Ordered plan</div>
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img src="gold.svg" class="img-fluid rounded-5 border border-1" alt="">
+                                            </div>
+                                            <div class="col-10">
+                                                <div class="d-flex custom-text">Fitness4Life<span class="ms-auto" id="planPrice4">$10.0</span></div>
+                                                <div class="custom-text" style="color: gray;" id="planDuration2">Gold plan (6 months)</div>
+                                            </div>
+                                        </div>
+                                        <div class="border-bottom pb-2 mb-2"></div>
+                                    </div>
+                                    <div class="container">
+                                        <h5 class="border-bottom pb-2">
+                                            <div class="d-flex custom-text">Total payment<span class="ms-auto" id="planPrice5">$10.0</span></div>
+                                            <div class="mt-1 d-flex custom-text">Discount -0% <span class="ms-auto">-$0</span></div>
+                                        </h5>
+                                    </div>
+                                    <div class="container">
+                                        <h5 class="">
+                                            <div class="d-flex custom-text">Total due today<span class="ms-auto" id="planPrice6">$10.0</span></div>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <p class="lead mt-2">You’ll pay <span id="planPrice15"></span> for a <span id="planDuration7"></span> subscription.</p>
+                                <div class="input-group input-group-sm w-75 mt-3">
+                                    <span class="input-group-text rounded-start-4" id="inputGroup-sizing-sm">Promo code</span>
+                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                    <button class="btn btn-outline-success rounded-end-4" type="button" id="button-addon2">Apply</button>
+                                </div>
+                                <p class="mt-2 text-secondary" style="font-size: 12px;">By clicking Continue with Alipay, you agree to Fitness4Life’s <a href="#" class="fw-bold text-dark">Terms of Use</a> and <a href="#" class="fw-bold text-dark">Privaty Policy</a>.</p>
+                                <button type="button" class="btn btn-dark w-100 mt-0 mb-5 rounded-3">Continue with <i class="bi bi-alipay"></i> Alipay</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="col-lg-5 ps-lg-5 pe-lg-5 coltwo">
+            <div class="container custom-width hid-2 blank">
+                <div class="container">
+                    <h4 class="mt-3 mt-lg-0 mb-3">Order summary</h4>
+                    <div class="h5 custom-text">Ordered plan</div>
+                    <div class="row">
+                        <div class="col-2">
+                            <img src="gold.svg" class="img-fluid rounded-5 border border-1" alt="">
+                        </div>
+                        <div class="col-10">
+                            <div class="d-flex custom-text">Fitness4Life<span class="ms-auto" id="planPrice1">$10.0</span></div>
+                            <div class="custom-text" style="color: gray;" id="planDuration1">Gold plan (6 months)</div>
+                        </div>
+                    </div>
+                    <div class="border-bottom pb-2 mb-2"></div>
+                </div>
+                <div class="container">
+                    <h5 class="border-bottom pb-2">
+                        <div class="d-flex custom-text">Total payment<span class="ms-auto" id="planPrice2">$10.0</span></div>
+                        <div class="mt-1 d-flex custom-text">Discount -0% <span class="ms-auto">-$0</span></div>
+                    </h5>
+                </div>
+                <div class="container">
+                    <h5 class="">
+                        <div class="d-flex custom-text">Total due today<span class="ms-auto" id="planPrice3">$10.0</span></div>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 coltwo"></div>
+    </div>
+</section>
+
+
+<!-- <script src="app.js"></script> -->
+<script>
+    function updateOrderSummary(price, duration) {
+        // Update all price elements
+        for (let i = 1; i <= 15; i++) {
+            const priceElement = document.getElementById('planPrice' + i);
+            if (priceElement) {
+                priceElement.textContent = '$' + price;
+            }
+        }
+        // Update all duration elements
+        for (let i = 1; i <= 7; i++) {
+            const durationElement = document.getElementById('planDuration' + i);
+            if (durationElement) {
+                durationElement.textContent = duration;
+            }
+        }
+    }
+
+    document.querySelectorAll('input[name="planName"]').forEach((radio) => {
+        radio.addEventListener('change', (event) => {
+            // Get the price and duration from the selected radio button
+            const price = event.target.getAttribute('data-price');
+            const duration = event.target.getAttribute('data-duration');
+            // Update the order summary
+            updateOrderSummary(price, duration);
+        });
+        // Update the order summary with the initial values of the checked radio button
+        if (radio.checked) {
+            const price = radio.getAttribute('data-price');
+            const duration = radio.getAttribute('data-duration');
+            updateOrderSummary(price, duration);
+        }
+    });
+</script>
+</body>
+</html>

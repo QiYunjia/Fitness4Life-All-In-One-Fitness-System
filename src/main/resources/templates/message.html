@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My user page</title>
+    <style>
+    * {
+        margin: 0rem;
+        padding: 0rem;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: var(--body-color);
+        transition: all 0.3s ease;
+    }
+
+
+    :root {
+        --body-color: #d4daeb;
+        --shell-color: #0b0d0f;
+        --primary-color: #695CFE;
+        --primary-color-light: #F6F5FF;
+        --text-color: #e4d3d3;
+    }
+
+    .shell {
+        position: fixed;
+        top: 0rem;
+        left: 0rem;
+        height: 100rem;
+        width: 17.5rem;
+        padding: 1rem 1rem;
+        background: var(--shell-color);
+        transition: all 0.3s ease;
+    }
+
+    .shell li {
+        height: 5rem;
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin-top: -1rem;
+    }
+
+
+    .text{
+        color: var(--text-color);
+        transition: all 0.3s ease;
+        font: 500 17px;
+        white-space: nowrap;
+        opacity: 1;
+    }
+
+
+    header {
+        position: relative;
+    }
+
+    .image-text span{
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+    }
+
+    .name {
+        margin-top: 0.5rem;
+        font: 600 18px '';
+    }
+
+    .image {
+        display: flex;
+        justify-content: center;
+    }
+
+    .image img {
+        width: 5rem;
+        border-radius: 0.25rem;
+    }
+
+    .menu {
+        margin-top: 1.5rem;
+    }
+
+    .nav-link ion-icon {
+        font-size: 2rem; 
+        align-items: center;
+    }
+
+    .nav-link span {
+        font-size: 18px; 
+        font-family: Arial, sans-serif;
+        align-items: center;
+        padding: 0.5rem;
+    }
+
+    .shell li a {
+        list-style: none;
+        height: 100rem;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        height: 2.5rem;
+        width: 12.5rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .shell li a:hover {
+        background-color: var(--primary-color);
+    }
+
+    .shell li a:hover .icon,
+    .shell li a:hover .text {
+        color: var(--shell-color);
+    }
+
+    </style>
+</head>
+
+<body background="">
+
+    <nav class="shell open">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="frieren.jpg" alt="">
+                </span>
+                <div class="text logo-text">
+                    <span class="name">My user name</span>
+                </div>
+            </div>
+
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="homepage.html">
+                            <ion-icon name="home-outline"></ion-icon>
+                            <span class="text nac-text">Home</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="userInfo.html">
+                            <ion-icon name="document-text-outline"></ion-icon>
+                            <span class="text nac-text">My profile</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <span class="text nac-text">Message</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="myappointments.html">
+                            <ion-icon name="time-outline"></ion-icon>
+                            <span class="text nac-text">My appointments</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="myorders.html">
+                            <ion-icon name="wallet-outline"></ion-icon>
+                            <span class="text nac-text">My orders</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="changepassword.html">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            <span class="text nac-text">Update password</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                            <span class="text nac-text">Log out</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <ion-icon name="trash-outline"></ion-icon>
+                            <span class="text nac-text">Cancel account</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+    </nav>
+
+
+</body>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<script>
+    function saveInformation(){
+           
+            var username = document.getElementById('username').value;
+            var gender = document.getElementById('gender').value;
+            var birthday = document.getElementById('birthday').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var profile = document.getElementById('profile').value;
+
+            
+            console.log('Username: ' + username);
+            console.log('Gender: ' + gender);
+            console.log('Birthday: ' + birthday);
+            console.log('Email: ' + email);
+            console.log('Phone: ' + phone);
+            console.log('Profile: ' + profile);
+    }
+
+</script>
+
+</html> 

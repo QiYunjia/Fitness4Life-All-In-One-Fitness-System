@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-size: 18px;
+        }
+
+        .image_container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .course_container {
+            position: absolute;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            margin-top: 20;
+            font-size: 30px;
+        }
+
+        .course {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 50%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 18px;
+            height: 100px;
+            resize: vertical;
+        }
+
+
+        button[type="submit"] {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .image {
+            width: 50%;
+            height: auto;
+            position: absolute;
+            right: -70%;
+            transition: transform 2s;
+        }
+
+        .image:first-child {
+            top: 2.5%;
+        }
+
+        .image:last-child {
+            top: 60%;
+        }
+
+        .active {
+            transform: translateX(-130%);
+        }
+        .newButton{
+            display:inline-block;
+            padding:6px 12px;
+            cursor:pointer;
+            background-color: #f8f9fa;
+            border:1px solid #ddd;
+            border-radius:4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="image_container">
+        <img src="basketball.svg" th:src="@{/basketball.svg}" class="image">
+        <img src="football.svg" th:src="@{/football.svg}" class="image">
+    </div>
+    <div class="course_container" style="overflow: scroll;">
+        <h1>Create the Course</h1>
+        <form id="course_form" action="/addCourse" method="POST" enctype="multipart/form-data">
+            <div class="course">
+                <label for="course_name">Course Name:</label>
+                <input type="text" id="course_name" name="name" required>
+            </div>
+            <div class="course">
+                <label for="course_description">Course Description:</label>
+                <textarea id="course_description" name="description" placeholder="Please enter less than 1000 characters" maxlength="1000" required></textarea>
+            </div>
+            <div class="course">
+                <label for="fileInput" class="newButton">Select Image:</label>
+                <input type="file" id="fileInput" name="file" accept="image/*" style="display:none;" required>
+            </div>
+            <div id="preview"></div>
+            <button type="submit">Add</button>
+        </form>
+        
+    </div>
+    <script>
+        window.onload = setupImageUpload();
+        window.onload = function () {
+            document.querySelectorAll('.image').forEach(function (image) {
+                image.classList.add('active');
+            });
+        };
+        function setupImageUpload() {
+            var fileInput = document.getElementById('fileInput');
+            fileInput.addEventListener('change', function () {
+                var file = fileInput.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var imgElement = document.createElement('img');
+                        imgElement.src = e.target.result;
+                        imgElement.style.maxWidth = '500px';
+                        imgElement.style.maxHeight = '250px';
+                        var preview = document.getElementById('preview');
+                        preview.innerHTML = '';
+                        preview.appendChild(imgElement);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>

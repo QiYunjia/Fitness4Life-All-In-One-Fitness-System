@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+	<title>Trainer Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Trainer Directory</h3>
+	<hr>
+
+	<!-- Add a button -->
+	<a th:href="@{/trainers/showFormForAdd}"
+	   class="btn btn-primary btn-sm mb-3">
+		Add Trainer
+	</a>
+
+	<table class="table table-bordered table-striped">
+		<thead class="table-primary">
+		<tr>
+			<th>Name</th>
+			<th>Age</th>
+			<th>ClassId</th>
+			<th>Level</th>
+			<th>Time Collection</th>
+			<th>Intro</th>
+			<th>Update</th>
+		</tr>
+		</thead>
+
+		<tbody>
+		<tr th:each="tempTrainer : ${trainers}">
+
+			<td th:text="${tempTrainer.name}"></td>
+			<td th:text="${tempTrainer.age}"></td>
+			<td th:text="${tempTrainer.classId}"></td>
+			<td th:text="${tempTrainer.level}"></td>
+			<td th:text="${tempTrainer.timeCollection}"></td>
+			<td th:text="${tempTrainer.intro}"></td>
+
+			<!-- Add update button/link -->
+			<td>
+				<a th:href="@{/trainers/showFormForUpdate(trainerId=${tempTrainer.id})}"
+				   class="btn btn-info btn-sm">
+					Update
+				</a>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+</div>
+
+</body>
+</html>

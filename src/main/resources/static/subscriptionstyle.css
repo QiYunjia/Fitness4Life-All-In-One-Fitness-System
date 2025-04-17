@@ -1,0 +1,17 @@
+.star-rating {
+    font-size: 1.5rem;
+    color: #ffca00;
+  }
+
+body {
+    background-color: #343a40;
+}
+
+@media(min-width: 576px) and (max-width: 768px) {
+    .cards {
+      row-gap: 20px;
+    }
+
+}
+
+/* .bg {background-image: url("VINEHOOD.png");} */
